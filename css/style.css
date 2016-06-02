@@ -2,3 +2,92 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+body {
+    background-size: cover;
+    background: url("http://i.imgur.com/d7Q4JYf.jpg");
+    background-position: right top;
+    }
+  
+h1 {
+    font-size: 75px;
+    color: rgba(255, 255, 255, .75);  
+    margin: 20px;
+    font-family: monospace;
+    }
+    
+h2 {
+    font-size: 50px;
+    color: rgba(0, 0, 0, .75);
+    font-family: monospace;
+    margin: 0px;
+    }
+    
+p {
+    font-size: 20px;
+    color: rgba(0, 0, 0, .75);
+    font-family: monospace;
+    margin: 0px;
+    } 
+    
+div {
+    display: inline-block;   
+    padding: 5px 20px 20px 20px;
+    max-width: 410px;
+    background-color: rgba(255, 255, 255, .75);
+    margin: 5px 0 10px 20px;
+    }
+    
+ul {
+    font-size: 20px;
+    color: rgba(0, 0, 0, .75);
+    font-family: monospace;
+    margin: 0px;
+    }
+    
+a { 
+    font-size: 20px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, .75);
+    font-family: monospace;
+    font-weight: bold;
+    }
+    
+a:hover {
+    font-size: 20px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, .35);
+    font-family: monospace;
+    font-weight: bold;
+    }
+    
+@media (max-width: 700px){
+  
+h1 {
+        font-size: 48px;
+        text-align: center;
+        margin: 5px;
+      }
+      
+div {
+        display:block;
+        margin: 0 auto;
+        }
+
+h2 {
+        font-size:30px;
+        text-align: center;
+      }
+
+p {
+        font-size: 18px;
+      }
+
+ul {
+        font-size: 18px;
+      }
+
+a {
+        font-size:18px;
+      }
+    }
