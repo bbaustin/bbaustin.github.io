@@ -18,7 +18,8 @@ var keyPressPermission = false;
 var word = ""; //eventually an API call, or something from an array/object of words
 var hiddenWord = ""; 
 var pointAmount = 0;
-var body= document.body;
+var body = document.body;
+var guessedLetters = [];
 
 var putPoints = document.createElement('div');
 document.body.appendChild(putPoints);
@@ -35,17 +36,19 @@ for (var i = 0; i < word.length; i++) {
   console.log(word.charCodeAt(i));  //+32 da fuk
 }
 
+var updateWord = function(letter) {
 hiddenWord = "";
   for (var i = 0; i < word.length; i++) {
-    if ( ((word.charCodeAt(i)) >= 65) && (word.charCodeAt(i) <= 90) || ((word.charCodeAt(i) >= 97) && (word.charCodeAt(i) <= 122)) )  {
-      hiddenWord += '.';
+    if ( ((word.charCodeAt(i)) >= 65) && (word.charCodeAt(i) <= 90) || ((word.charCodeAt(i) >= 97) && (word.charCodeAt(i) <= 122)) )  {  //if it's a letter, replace it with .
+      hiddenWord += ".";
     }
     else {
-      hiddenWord += word[i];
+      hiddenWord += word[i]; //or else replace it with the character
 
     }
   }
-
+}
+updateWord();
 var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 hiddenWordPlace[0].textContent = hiddenWord;
 
@@ -54,15 +57,40 @@ hiddenWordPlace[0].textContent = hiddenWord;
 //\\\/\/\/\/\/\/\/\\\/\/   GUESS the word     \\\//\/\///\/\/\\\/\/\\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 //Player.prototype.guess = function() {
-  document.addEventListener("keydown", function(event) {
-    for (var i = 0; i < word.length; i++) {   //looping thru the word
-      if (word.charCodeAt(i) === (event.which + 32)) {    // testing if the letters in the word match the keypress
-        hiddenWordPlace[0].innerHTML += word.charAt(i); //test to see if it's reading keypress correctly. adding the letter onto the end of the hiddenWord.
-        //hiddenWord[i] += word.charAt(i); //i want this to work
 
-      }
+  document.addEventListener("keydown", function(event) {
+    guessedLetters.push(event.which);
+ 
+ for (var i = 0; i < word.length; i++) {
+    if (word.charCodeAt(i) === (event.which + 32)) {
+      hiddenWord += word[i];
     }
-  })
+    else if ( ((word.charCodeAt(i)) >= 65) && (word.charCodeAt(i) <= 90) || ((word.charCodeAt(i) >= 97) && (word.charCodeAt(i) <= 122)) )  {  //if it's a letter, replace it with .
+      hiddenWord += ".";
+    }
+    else {
+      hiddenWord += word[i]; //or else replace it with the character
+    }
+  }
+  hiddenWordPlace[0].textContent = hiddenWord;
+})
+ //    for (var i = 0; i < word.length; i++) {   //looping thru the word
+ //      hiddenWord = "";
+ //      if (word.charCodeAt(i) === (event.which + 32)) {    // testing if the letters in the word match the keypress
+ //        hiddenWord += word.charAt(i);
+        
+ //      }  
+ //        //updateWord(event.which);
+ //        //hiddenWordPlace[0].innerHTML = word.charAt(i); //test to see if it's reading keypress correctly. adding the letter onto the end of the hiddenWord.
+ //      else {
+ //        hiddenWord += ".";
+ //      }
+
+ //    }
+ //  hiddenWordPlace[0].textContent = hiddenWord;
+ // // console.log(replaceWord); 
+
+
   //   console.log(event.which + 32);  
   //   if (keyPressPermission) {
   //     for (var i = 0; i < word.length; i++) {
