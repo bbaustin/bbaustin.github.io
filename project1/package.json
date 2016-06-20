@@ -1,0 +1,19 @@
+{
+  "name": "boilerplate_less",
+  "version": "1.0.0",
+  "description": "This is a boilerplate that includes less.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbaustin/ben-boilerplate.git"
+  },
+  "author": "Ben Austin <benjaminboydaustin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bbaustin/ben-boilerplate/issues"
+  },
+  "homepage": "https://github.com/bbaustin/ben-boilerplate#readme"
+}
