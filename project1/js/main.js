@@ -14,7 +14,7 @@ var player1 = new Player("", 0, true);
 var player2 = new Player("", 0 , false);
 
 var counter = 1;
-var keyPressPermission = true;
+var keyPressPermission = false;
 var word = ""; //eventually an API call, or something from an array/object of words
 var hiddenWord = ""; 
 var pointAmount = 0;
@@ -53,31 +53,49 @@ hiddenWordPlace[0].textContent = hiddenWord;
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   GUESS the word     \\\//\/\///\/\/\\\/\/\\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
+//Player.prototype.guess = function() {
+  document.addEventListener("keydown", function(event) {
+    for (var i = 0; i < word.length; i++) {   //looping thru the word
+      if (word.charCodeAt(i) === (event.which + 32)) {    // testing if the letters in the word match the keypress
+        hiddenWordPlace[0].innerHTML += word.charAt(i); //test to see if it's reading keypress correctly. adding the letter onto the end of the hiddenWord.
+        //hiddenWord[i] += word.charAt(i); //i want this to work
 
-document.addEventListener("keydown", function(event) {
-  console.log(event.which + 32);  
-  if (keyPressPermission) {
-    for (var i = 0; i < word.length; i++) {
-      if (word.charCodeAt(i) === (event.which + 32)) {
-        this.score += pointAmount;  // score of current player goes up. this probably won't work ATM      
-        keyPressPermission = false;     
-        hiddenWord[i] = word[i];  //no? 
-        console.log(event.which);       
-        console.log(word[i]); 
-        console.log(hiddenWord);
-        hiddenWordPlace[0].textContent = hiddenWord;
-
-      }
-      else { 
-        counter ++
-        keyPressPermission = false;
       }
     }
-  }
-  else {
-    console.log("please spin the wheel before guessing again");
-  }
-});
+  })
+  //   console.log(event.which + 32);  
+  //   if (keyPressPermission) {
+  //     for (var i = 0; i < word.length; i++) {
+  //       if (word.charCodeAt(i) === (event.which + 32)) {
+  //         this.score += pointAmount;        
+  //         keyPressPermission = false; 
+
+  //         console.log(event.which);       
+  //         console.log(word[i]); 
+  //         console.log(hiddenWord);
+
+  //         hiddenWord[i] = word[i];  //no? 
+  //         hiddenWordPlace[0].textContent = hiddenWord;
+  //       }
+  //       else { 
+  //         counter ++;
+  //         keyPressPermission = false;
+  //       }
+  //     }
+  //   }
+  //   else {
+  //     console.log("please spin the wheel before guessing again");
+  //   }
+  // });
+//}
+
+//EXAMPLE 
+// //var beautifulStranger = function () {
+//   var lis = document.getElementsByTagName('li');
+//         //console.log(lis);
+//   lis[7].innerHTML = "Aragorn";
+// }
+// beautifulStranger();
 
 //win condition  
   if(hiddenWord===word) {
