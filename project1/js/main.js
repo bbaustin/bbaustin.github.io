@@ -32,9 +32,9 @@ document.body.appendChild(putPoints);
 //\\\/\/\/\/\/\/\/\\\/\/   HIDE the word     \\\//\/\///\/\/\\\/\/\\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 word = "who's on that 95-96 bulls' jersey?";
-for (var i = 0; i < word.length; i++) {      
-  console.log(word.charCodeAt(i));  //+32 da fuk
-}
+// for (var i = 0; i < word.length; i++) {      
+//   console.log(word.charCodeAt(i));  //+32 da fuk
+// }
 
 var updateWord = function(letter) {
 hiddenWord = "";
@@ -58,18 +58,19 @@ hiddenWordPlace[0].textContent = hiddenWord;
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 //Player.prototype.guess = function() {
 
-  document.addEventListener("keydown", function(event) {
-    guessedLetters.push(event.which);
- 
- for (var i = 0; i < word.length; i++) {
-    if (word.charCodeAt(i) === (event.which + 32)) {
-      hiddenWord += word[i];
-    }
-    else if ( ((word.charCodeAt(i)) >= 65) && (word.charCodeAt(i) <= 90) || ((word.charCodeAt(i) >= 97) && (word.charCodeAt(i) <= 122)) )  {  //if it's a letter, replace it with .
-      hiddenWord += ".";
-    }
-    else {
-      hiddenWord += word[i]; //or else replace it with the character
+
+
+document.addEventListener("keydown", function(event) {
+  hiddenWord = "";
+  guessedLetters.push(event.which);
+  for (var i = 0; i < word.length; i++) {
+    for (var arrInd = 0; arrInd < guessedLetters.length; arrInd++) {
+      if ((word.charCodeAt(i) === (event.which + 32)) || (word.charCodeAt(i) === (guessedLetters[arrInd] + 32))|| (((event.which + 32) <= 65) && ((event.which + 32) >= 90))) {   
+        hiddenWord += word[i];
+      }
+      else {
+        hiddenWord[i] += "."; //or else replace it with the character
+      }
     }
   }
   hiddenWordPlace[0].textContent = hiddenWord;
