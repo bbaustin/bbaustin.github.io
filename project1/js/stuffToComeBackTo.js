@@ -39,7 +39,7 @@ var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   HIDE the word     \\\//\/\///\/\/\\\/\/\\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
-word = "1984 and 1985 were good!";
+word = "both 1985 & 1986 saw net gains";
  
 
 var updateWord = function() {
@@ -67,8 +67,8 @@ updateWord();
 //Player.prototype.guess = function() {
 
   document.addEventListener("keydown", function(event) {
-    guessed.push((event.which+32));
-    updateWord();
+    guessed.push((event.which+32));  //make it so u can't guess the same letter twice. here? 
+    updateWord();  // :'D
   })
 
       //hiddenWord = "";
