@@ -5,13 +5,13 @@ console.log('Hello, I am working.');
 //\/\/\/\/\/\/\/   Global Variable & Object Declarations   /\/\///\/\/\\\/\/
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 
-// function Player (name, score, turn) { //name needed?
-// 	this.name  = name;
-// 	this.score = score;
-//   this.turn = turn;
-// }
-// var player1 = new Player("", 0, true);
-// var player2 = new Player("", 0 , false);
+function Player (name, score, turn) { //name needed?
+ 	this.name  = name;
+  this.score = score;
+  this.turn = turn;
+}
+var player1 = new Player("", 0, true);
+var player2 = new Player("", 0, false);
 
 var counter = 0;
 var keyPressPermission = false;
@@ -52,7 +52,7 @@ var alreadyGuessed = function(charCode) {
 
 var inTheWord = function (charCode) { //you will be passing a charCode via ur keypress.
   for (var i = 0; i < word.length; i++) {
-    if (word.indexOf(String.fromCharCode(charCode)) === -1) { ///not in the word
+    if (word.indexOf(String.fromCharCode(charCode)) === -1) { ///NTS: why not +32 here? 
       return false;
     }
     else {
@@ -82,10 +82,16 @@ updateWord();
 var tellWhoseTurn = function () {
    if (counter % 2 === 0) {  //use object prototype?
      console.log("It's Player 1's Turn");
+     player1.turn = true;
+     player2.turn = false;
+     return "p1";
      //underline 
    }
    else {
      console.log("It's Player 2's Turn");
+     player1.turn = false;
+     player2.turn = true;
+     return "p2";
      //underline
    }
 }
@@ -95,10 +101,11 @@ tellWhoseTurn();
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   GUESS the word     \\\//\/\///\/\/\\\/\/\\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
-//Player.prototype.guess = function() {
 
+//Player.prototype.guess = function() {
   document.addEventListener("keydown", function(event) {
-    if (!alreadyGuessed((event.which + 32))) {  //makes it so u can't guess the same letter twice. 
+    if (keyPressPermission) {
+      if (!alreadyGuessed((event.which + 32))) {  //makes it so u can't guess the same letter twice. 
         guessed.push((event.which + 32));
         keyPressPermission = false; 
         if (!inTheWord((event.which + 32))) {
@@ -109,14 +116,19 @@ tellWhoseTurn();
         else {
           tellWhoseTurn();
           keyPressPermission = false;
-          //score += score or whatever
+          addPoints();
         }
+      }
+      else {
+        console.log("Please guess a letter than hasn't been guessed");
+      }
+      updateWord();  
     }
-    else {
-      console.log("Please guess a letter than hasn't been guessed");
-    }
-    updateWord();  
+  else {
+    console.log("Please spin before guessing a letter.");
+  }
   })
+//}
 
 //win condition  
   if(hiddenWord===word) {
@@ -151,7 +163,7 @@ tellWhoseTurn();
 
 var pointButton = document.querySelector('button[name="pointAmount"]');
 
-var pointsPlace = document.getElementsByClassName('pointHolder'); //this is an ARRAY!!!
+var pointsPlace = document.getElementsByClassName('pointHolder'); //this is an ARRAY
 
 
 pointButton.addEventListener('click', function(){
@@ -160,7 +172,6 @@ pointButton.addEventListener('click', function(){
     console.log(pointAmount);
     pointsPlace[0].innerHTML = pointAmount; 
     keyPressPermission = true;
-
     //return pointAmount;
   }
   else {
@@ -168,7 +179,23 @@ pointButton.addEventListener('click', function(){
   }
 })
 
+var p1ScorePlace = document.getElementsByClassName('p1Score');
+var p2ScorePlace = document.getElementsByClassName('p2Score');
+var scoreP1 = 0;
+var scoreP2 = 0; 
 
+var addPoints = function () {
+  if (player1.turn === true) {
+    scoreP1 += pointAmount;
+    p1ScorePlace[0].innerHTML = scoreP1;
+    console.log("Player 1's score is " + scoreP1);
+  }
+  else {
+    scoreP2 += pointAmount;
+    p2ScorePlace[0].innerHTML = scoreP2;
+    console.log("Player 2's score is " + scoreP1);
+  }
+}
 
 
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
