@@ -10,6 +10,7 @@ function Player (name, score, turn) { //name needed?
   this.score = score;
   this.turn = turn;
 }
+
 var player1 = new Player("", 0, true);
 var player2 = new Player("", 0, false);
 
@@ -39,6 +40,20 @@ var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 word = "i <3 javascript";
  
+
+var winCounter = 0;
+var didSomeoneWin = function () {
+  winCounter = 0;
+  for (var i = 0; i < word.length; i++)  
+    if (hiddenWord[i] === word[i]) {
+      winCounter ++;
+    }
+    if (winCounter === hiddenWord.length) {
+      console.log("someone won");
+    }
+}
+
+
 var alreadyGuessed = function(charCode) {
   for (var i = 0; i < guessed.length; i++) {
     if (guessed.indexOf(charCode) === -1) { ///not in the array
@@ -72,6 +87,7 @@ hiddenWord = "";
     }
   }
   hiddenWordPlace[0].textContent = hiddenWord;
+  didSomeoneWin();
 }
 updateWord();
 
@@ -127,13 +143,10 @@ tellWhoseTurn();
   else {
     console.log("Please spin before guessing a letter.");
   }
-  })
+})
 //}
 
-//win condition  
-  if(hiddenWord===word) {
-  alert("Winner");
-  }
+//win condition
 
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
