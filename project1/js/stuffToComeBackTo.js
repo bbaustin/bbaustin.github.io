@@ -20,11 +20,11 @@ var hiddenWord = "";
 // var pointAmount = 0;
 var body = document.body;
 var guessed = [];
-for (var i = 0; i < 65; i ++){
-  guessed.push(i + 32); // (i + 32)?
+for (var i = 0; i < 97; i++){ //a is 97 [65 + 32]
+  guessed.push(i); // (i + 32)?
 }
-for (var i = 91; i < 300; i++){
-  guessed.push(i + 32);
+for (var i = 122; i < 300; i++){ //z is 122 [91 + 32]
+  guessed.push(i);
 }
 
 var putPoints = document.createElement('div');
@@ -39,10 +39,8 @@ var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   HIDE the word     \\\//\/\///\/\/\\\/\/\\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
-word = "1984 was a good book!";
-for (var i = 0; i < word.length; i++) {      
-  console.log(word.charCodeAt(i));  //+32 da fuk
-}
+word = "1984 and 1985 were good!";
+ 
 
 var updateWord = function() {
 hiddenWord = "";     
@@ -56,9 +54,10 @@ hiddenWord = "";
   
     }
   }
+     hiddenWordPlace[0].textContent = hiddenWord;
+
 }
 updateWord();
-   hiddenWordPlace[0].textContent = hiddenWord;
 
 
 
