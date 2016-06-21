@@ -13,7 +13,7 @@ console.log('Hello, I am working.');
 // var player1 = new Player("", 0, true);
 // var player2 = new Player("", 0 , false);
 
-// var counter = 1;
+var counter = 0;
 var keyPressPermission = false;
 var word = ""; //eventually an API call, or something from an array/object of words
 var hiddenWord = ""; 
@@ -27,10 +27,7 @@ for (var i = 122; i < 300; i++){ //z is 122 [91 + 32]
   guessed.push(i);
 }
 
-// var putPoints = document.createElement('div');
-// document.body.appendChild(putPoints);
 
-var pointsPlace = document.getElementsByClassName('pointHolder');
 var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 
 
@@ -40,16 +37,28 @@ var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   HIDE the word     \\\//\/\///\/\/\\\/\/\\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
-word = "in 1993, what's eating gilbert grape came out";
+word = "i <3 javascript";
  
-var alreadyGuessed = function (charCode) {
-  for (var i = 0; i < guessed.length; i++)
+var alreadyGuessed = function(charCode) {
+  for (var i = 0; i < guessed.length; i++) {
     if (guessed.indexOf(charCode) === -1) { ///not in the array
       return false;
     }
     else {
       return true;
     }
+  }
+}
+
+var inTheWord = function (charCode) { //you will be passing a charCode via ur keypress.
+  for (var i = 0; i < word.length; i++) {
+    if (word.indexOf(String.fromCharCode(charCode)) === -1) { ///not in the word
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
 }
 
 var updateWord = function() {
@@ -61,25 +70,26 @@ hiddenWord = "";
     else {
       hiddenWord += word[i];
     }
-    // for (var p = 0; p < guessed.length; p++){  //looking thru every punctuation and guessed letter
-    //   // and looking thru every letter in the puzzle word
-    //   if (word.charCodeAt(i) === guessed[p]) { //if the js char code at the given letter is in guessed array
-    //     hiddenWord += word[i];   // add that letter from the puzzle word to the hidden word
-    //     console.log(hiddenWord)
-    //     console.log('hidden word ----------------------')
-    //     console.log(word[i])
-    //     console.log('------------------------------------')
-     
-    //   }
-    
-     //somewhere around here, eliminate myspace text generator 
-
   }
   hiddenWordPlace[0].textContent = hiddenWord;
 }
-    
 updateWord();
 
+//\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
+//\\//\\//\\/\\//\\//\\/////\   Determine Turn   \\///\\//\\//\\/\\//\\//\\/
+//\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
+
+var tellWhoseTurn = function () {
+   if (counter % 2 === 0) {  //use object prototype?
+     console.log("It's Player 1's Turn");
+     //underline 
+   }
+   else {
+     console.log("It's Player 2's Turn");
+     //underline
+   }
+}
+tellWhoseTurn();
 
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
@@ -88,86 +98,31 @@ updateWord();
 //Player.prototype.guess = function() {
 
   document.addEventListener("keydown", function(event) {
-    if (guessed.indexOf(event.which + 32) === -1){  //makes it so u can't guess the same letter twice. 
+    if (!alreadyGuessed((event.which + 32))) {  //makes it so u can't guess the same letter twice. 
         guessed.push((event.which + 32));
         keyPressPermission = false; 
-      }
-    updateWord();  // :'D god bless
+        if (!inTheWord((event.which + 32))) {
+          counter++;
+          tellWhoseTurn();
+          keyPressPermission = false;
+        }
+        else {
+          tellWhoseTurn();
+          keyPressPermission = false;
+          //score += score or whatever
+        }
+    }
+    else {
+      console.log("Please guess a letter than hasn't been guessed");
+    }
+    updateWord();  
   })
-
-      //hiddenWord = "";
-
-  //   for (var i = 0; i < word.length; i++) {
-  //     if (word.charCodeAt(i) === (event.which + 32)) {
-  //       hiddenWord += word[i];
-  //     }
-  //     else if ( ((word.charCodeAt(i)) >= 65) && (word.charCodeAt(i) <= 90) || ((word.charCodeAt(i) >= 97) && (word.charCodeAt(i) <= 122)) )  {  //if it's a letter, replace it with .
-  //       hiddenWord += ".";
-  //     }
-  //     else {
-  //       hiddenWord += word[i]; //or else replace it with the character
-  //     }
-  //   }
-
-    
-  // hiddenWordPlace[0].textContent = hiddenWord;
-
- //    for (var i = 0; i < word.length; i++) {   //looping thru the word
- //      hiddenWord = "";
- //      if (word.charCodeAt(i) === (event.which + 32)) {    // testing if the letters in the word match the keypress
- //        hiddenWord += word.charAt(i);
-        
- //      }  
- //        //updateWord(event.which);
- //        //hiddenWordPlace[0].innerHTML = word.charAt(i); //test to see if it's reading keypress correctly. adding the letter onto the end of the hiddenWord.
- //      else {
- //        hiddenWord += ".";
- //      }
-
- //    }
- //  hiddenWordPlace[0].textContent = hiddenWord;
- // // console.log(replaceWord); 
-
-
-  //   console.log(event.which + 32);  
-  //   if (keyPressPermission) {
-  //     for (var i = 0; i < word.length; i++) {
-  //       if (word.charCodeAt(i) === (event.which + 32)) {
-  //         this.score += pointAmount;        
-  //         keyPressPermission = false; 
-
-  //         console.log(event.which);       
-  //         console.log(word[i]); 
-  //         console.log(hiddenWord);
-
-  //         hiddenWord[i] = word[i];  //no? 
-  //         hiddenWordPlace[0].textContent = hiddenWord;
-  //       }
-  //       else { 
-  //         counter ++;
-  //         keyPressPermission = false;
-  //       }
-  //     }
-  //   }
-  //   else {
-  //     console.log("please spin the wheel before guessing again");
-  //   }
-  // });
-//}
-
-//EXAMPLE 
-// //var beautifulStranger = function () {
-//   var lis = document.getElementsByTagName('li');
-//         //console.log(lis);
-//   lis[7].innerHTML = "Aragorn";
-// }
-// beautifulStranger();
 
 //win condition  
   if(hiddenWord===word) {
   alert("Winner");
   }
-//}
+
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   Create Player Names     \\\//\/\///\/\/\\\/\/\\\
@@ -196,13 +151,14 @@ updateWord();
 
 var pointButton = document.querySelector('button[name="pointAmount"]');
 
+var pointsPlace = document.getElementsByClassName('pointHolder'); //this is an ARRAY!!!
 
 
 pointButton.addEventListener('click', function(){
   if (keyPressPermission === false) { 
     pointAmount = Math.round(1000 * Math.random());
     console.log(pointAmount);
-    pointsPlace.innerHTML += pointAmount; 
+    pointsPlace[0].innerHTML = pointAmount; 
     keyPressPermission = true;
 
     //return pointAmount;
@@ -213,19 +169,6 @@ pointButton.addEventListener('click', function(){
 })
 
 
-//\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
-//\\//\\//\\/\\//\\//\\/////\   Determine Turn   \\///\\//\\//\\/\\//\\//\\/
-//\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
-
-//   if (counter % 2 !== 0) {  //use object prototype?
-//     console.log("It's Player 1's Turn");
-//     //underline 
-//   }
-//   else {
-//     console.log("It's Player 2's Turn");
-//     //underline
-//   }
-// // }
 
 
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
