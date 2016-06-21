@@ -14,10 +14,10 @@ console.log('Hello, I am working.');
 // var player2 = new Player("", 0 , false);
 
 // var counter = 1;
-// var keyPressPermission = false;
+var keyPressPermission = false;
 var word = ""; //eventually an API call, or something from an array/object of words
 var hiddenWord = ""; 
-// var pointAmount = 0;
+var pointAmount = 0;
 var body = document.body;
 var guessed = [];
 for (var i = 0; i < 97; i++){ //a is 97 [65 + 32]
@@ -27,9 +27,10 @@ for (var i = 122; i < 300; i++){ //z is 122 [91 + 32]
   guessed.push(i);
 }
 
-var putPoints = document.createElement('div');
-document.body.appendChild(putPoints);
+// var putPoints = document.createElement('div');
+// document.body.appendChild(putPoints);
 
+var pointsPlace = document.getElementsByClassName('pointHolder');
 var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 
 
@@ -39,24 +40,44 @@ var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   HIDE the word     \\\//\/\///\/\/\\\/\/\\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
-word = "both 1985 & 1986 saw net gains";
+word = "in 1993, what's eating gilbert grape came out";
  
+var alreadyGuessed = function (charCode) {
+  for (var i = 0; i < guessed.length; i++)
+    if (guessed.indexOf(charCode) === -1) { ///not in the array
+      return false;
+    }
+    else {
+      return true;
+    }
+}
 
 var updateWord = function() {
 hiddenWord = "";     
-  for (var i = 0; i < word.length; i++) { 
-    hiddenWord += ".";
-    for (var p = 0; p < guessed.length; p++){  //looking thru every punctuation and guessed letter
-      // and looking thru every letter in the puzzle word
-      if (word.charCodeAt(i) === guessed[p]) { //if the js char code at the given letter is in guessed array
-        hiddenWord += word[i];   // add that letter from the puzzle word to the hidden word
-      }
-  
+  for (var i = 0; i < word.length; i++) { ////////
+    if (!alreadyGuessed(word.charCodeAt(i))){
+      hiddenWord += ".";
     }
-  }
-     hiddenWordPlace[0].textContent = hiddenWord;
+    else {
+      hiddenWord += word[i];
+    }
+    // for (var p = 0; p < guessed.length; p++){  //looking thru every punctuation and guessed letter
+    //   // and looking thru every letter in the puzzle word
+    //   if (word.charCodeAt(i) === guessed[p]) { //if the js char code at the given letter is in guessed array
+    //     hiddenWord += word[i];   // add that letter from the puzzle word to the hidden word
+    //     console.log(hiddenWord)
+    //     console.log('hidden word ----------------------')
+    //     console.log(word[i])
+    //     console.log('------------------------------------')
+     
+    //   }
+    
+     //somewhere around here, eliminate myspace text generator 
 
+  }
+  hiddenWordPlace[0].textContent = hiddenWord;
 }
+    
 updateWord();
 
 
@@ -67,8 +88,11 @@ updateWord();
 //Player.prototype.guess = function() {
 
   document.addEventListener("keydown", function(event) {
-    guessed.push((event.which+32));  //make it so u can't guess the same letter twice. here? 
-    updateWord();  // :'D
+    if (guessed.indexOf(event.which + 32) === -1){  //makes it so u can't guess the same letter twice. 
+        guessed.push((event.which + 32));
+        keyPressPermission = false; 
+      }
+    updateWord();  // :'D god bless
   })
 
       //hiddenWord = "";
@@ -175,11 +199,12 @@ var pointButton = document.querySelector('button[name="pointAmount"]');
 
 
 pointButton.addEventListener('click', function(){
-  if (!keyPressPermission) { 
+  if (keyPressPermission === false) { 
     pointAmount = Math.round(1000 * Math.random());
     console.log(pointAmount);
+    pointsPlace.innerHTML += pointAmount; 
     keyPressPermission = true;
-    putPoints.innerHTML = pointAmount; 
+
     //return pointAmount;
   }
   else {
