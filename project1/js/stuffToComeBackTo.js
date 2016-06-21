@@ -24,7 +24,7 @@ var guessed = [];
 for (var i = 0; i < 97; i++){ //a is 97 [65 + 32]
   guessed.push(i); // (i + 32)?
 }
-for (var i = 122; i < 300; i++){ //z is 122 [91 + 32]
+for (var i = 123; i < 300; i++){ //z is 122 [91 + 32]
   guessed.push(i);
 }
 
@@ -94,12 +94,18 @@ updateWord();
 //\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
 //\\//\\//\\/\\//\\//\\/////\   Determine Turn   \\///\\//\\//\\/\\//\\//\\/
 //\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
+var p1Place = document.getElementsByClassName("p1Info");
+var p2Place = document.getElementsByClassName("p2Info");
+
 
 var tellWhoseTurn = function () {
    if (counter % 2 === 0) {  //use object prototype?
      console.log("It's Player 1's Turn");
      player1.turn = true;
      player2.turn = false;
+     p1Place[0].style.border = "5px solid black";
+     p1Place[0].style.borderRadius = "2px";     
+     p2Place[0].style.border = "1px black dotted";     
      return "p1";
      //underline 
    }
@@ -107,6 +113,9 @@ var tellWhoseTurn = function () {
      console.log("It's Player 2's Turn");
      player1.turn = false;
      player2.turn = true;
+     p2Place[0].style.border = "5px solid black";
+     p2Place[0].style.borderRadius = "2px";
+     p1Place[0].style.border = "1px black dotted";     
      return "p2";
      //underline
    }
@@ -123,6 +132,7 @@ tellWhoseTurn();
     if (keyPressPermission) {
       if (!alreadyGuessed((event.which + 32))) {  //makes it so u can't guess the same letter twice. 
         guessed.push((event.which + 32));
+        displayGuesses();
         keyPressPermission = false; 
         if (!inTheWord((event.which + 32))) {
           counter++;
@@ -207,6 +217,21 @@ var addPoints = function () {
     scoreP2 += pointAmount;
     p2ScorePlace[0].innerHTML = scoreP2;
     console.log("Player 2's score is " + scoreP1);
+  }
+}
+
+//\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
+//\\//\\//\\/\\//\\//\\/  Display Guessed Letters   \\//\\//\\\/\\\/\\\//\\\/\\
+//\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
+
+var guessesPlace = document.getElementsByClassName('letters');
+
+var displayGuesses = function () {
+  guessesPlace[0].innerHTML = "";
+  for (var i = 97; i < 123; i ++) {    // automatically alphabetizes, awesome 
+    if (guessed.indexOf(i) !== -1) {
+      guessesPlace[0].innerHTML += String.fromCharCode(i) + "...";
+    }
   }
 }
 

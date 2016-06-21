@@ -418,7 +418,10 @@ textarea {
   font: inherit; /* 2 */
 }
 
-h1,
+h1 {
+  font-family: 'Bungee Shade', cursive;
+  font-size: 4em;
+}
 h2,
 h3,
 h4,
@@ -426,20 +429,20 @@ h5,
 h6 {
   font-weight: 100, 200, 300, 400;
   color: #ff54b3;
-  font-size: 4em;
-  font-family: monospace;
+  font-size: 3em;
+  font-family: 'Bungee', cursive;
 }
 p {
   font-size: 16px;
   color: black;
-  font-family: monospace;
+  font-family: 'Bungee Hairline', cursive;
 }
 a {
   color: #ff54b3;
 }
 div {
   text-align: center;
-  font-family: monospace;
+  font-family: 'Bungee', cursive;
 }
 body {
   background-color: #c9c9c9;
@@ -447,9 +450,30 @@ body {
 .p1Info,
 .p2Info {
   border: 1px black dotted;
+  font-size: 1.5em;
+  font-family: 'Bungee Hairline', cursive;
 }
 .wordHolder {
   font-size: 2em;
+  font-family: 'Bungee', cursive;
+}
+.letters {
+  font-size: 1.2em;
+  font-family: 'Bungee Hairline', cursive;
+}
+.lightbox-container {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.75);
+  top: 50px;
+  left: 50px;
+  width: 80%;
+  height: 80%;
+}
+.lightbox-content {
+  width: 800px;
+  margin: auto;
+  position: relative;
+  font-size: 18px;
 }
 .container {
   padding: 0 20px;
@@ -476,11 +500,9 @@ body {
   float: left;
   width: 100%;
   margin-right: 3%;
-  /*
-     &:last-child {
-       margin-right: 0;
-     }
-*/
+}
+.col-12:last-child {
+  margin-right: 0;
 }
 .col-11 {
   display: block;
@@ -488,11 +510,9 @@ body {
   float: left;
   width: 91.41666667%;
   margin-right: 3%;
-  /*
-     &:last-child {
-       margin-right: 0;
-     }
-*/
+}
+.col-11:last-child {
+  margin-right: 0;
 }
 .col-10 {
   display: block;
@@ -500,11 +520,9 @@ body {
   float: left;
   width: 82.83333333%;
   margin-right: 3%;
-  /*
-     &:last-child {
-       margin-right: 0;
-     }
-*/
+}
+.col-10:last-child {
+  margin-right: 0;
 }
 .col-9 {
   display: block;
@@ -512,11 +530,9 @@ body {
   float: left;
   width: 74.25%;
   margin-right: 3%;
-  /*
-     &:last-child {
-       margin-right: 0;
-     }
-*/
+}
+.col-9:last-child {
+  margin-right: 0;
 }
 .col-8 {
   display: block;
@@ -524,11 +540,9 @@ body {
   float: left;
   width: 65.66666667%;
   margin-right: 3%;
-  /*
-     &:last-child {
-       margin-right: 0;
-     }
-*/
+}
+.col-8:last-child {
+  margin-right: 0;
 }
 .col-7 {
   display: block;
@@ -536,11 +550,9 @@ body {
   float: left;
   width: 57.08333333%;
   margin-right: 3%;
-  /*
-     &:last-child {
-       margin-right: 0;
-     }
-*/
+}
+.col-7:last-child {
+  margin-right: 0;
 }
 .col-6 {
   display: block;
@@ -548,11 +560,9 @@ body {
   float: left;
   width: 48.5%;
   margin-right: 3%;
-  /*
-     &:last-child {
-       margin-right: 0;
-     }
-*/
+}
+.col-6:last-child {
+  margin-right: 0;
 }
 .col-5 {
   display: block;
@@ -560,11 +570,9 @@ body {
   float: left;
   width: 39.91666667%;
   margin-right: 3%;
-  /*
-     &:last-child {
-       margin-right: 0;
-     }
-*/
+}
+.col-5:last-child {
+  margin-right: 0;
 }
 .col-4 {
   display: block;
@@ -572,11 +580,9 @@ body {
   float: left;
   width: 31.33333333%;
   margin-right: 3%;
-  /*
-     &:last-child {
-       margin-right: 0;
-     }
-*/
+}
+.col-4:last-child {
+  margin-right: 0;
 }
 .col-3 {
   display: block;
@@ -584,11 +590,9 @@ body {
   float: left;
   width: 22.75%;
   margin-right: 3%;
-  /*
-     &:last-child {
-       margin-right: 0;
-     }
-*/
+}
+.col-3:last-child {
+  margin-right: 0;
 }
 .col-2 {
   display: block;
@@ -596,11 +600,9 @@ body {
   float: left;
   width: 14.16666667%;
   margin-right: 3%;
-  /*
-     &:last-child {
-       margin-right: 0;
-     }
-*/
+}
+.col-2:last-child {
+  margin-right: 0;
 }
 .col-1 {
   display: block;
@@ -608,9 +610,7 @@ body {
   float: left;
   width: 5.58333333%;
   margin-right: 3%;
-  /*
-     &:last-child {
-       margin-right: 0;
-     }
-*/
+}
+.col-1:last-child {
+  margin-right: 0;
 }
