@@ -5,24 +5,32 @@ console.log('Hello, I am working.');
 //\/\/\/\/\/\/\/   Global Variable & Object Declarations   /\/\///\/\/\\\/\/
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 
-function Player (name, score, turn) { //name needed?
-	this.name  = name;
-	this.score = score;
-  this.turn = turn;
-}
-var player1 = new Player("", 0, true);
-var player2 = new Player("", 0 , false);
+// function Player (name, score, turn) { //name needed?
+// 	this.name  = name;
+// 	this.score = score;
+//   this.turn = turn;
+// }
+// var player1 = new Player("", 0, true);
+// var player2 = new Player("", 0 , false);
 
-var counter = 1;
-var keyPressPermission = false;
+// var counter = 1;
+// var keyPressPermission = false;
 var word = ""; //eventually an API call, or something from an array/object of words
 var hiddenWord = ""; 
-var pointAmount = 0;
+// var pointAmount = 0;
 var body = document.body;
-var guessedLetters = [];
+var guessed = [];
+for (var i = 0; i < 65; i ++){
+  guessed.push(i + 32); // (i + 32)?
+}
+for (var i = 91; i < 300; i++){
+  guessed.push(i + 32);
+}
 
 var putPoints = document.createElement('div');
 document.body.appendChild(putPoints);
+
+var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 
 
 //hiddenWordPlace[0].appendChild(hiddenWord); //why don't u work
@@ -31,26 +39,27 @@ document.body.appendChild(putPoints);
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   HIDE the word     \\\//\/\///\/\/\\\/\/\\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
-word = "who's on that 95-96 bulls' jersey?";
+word = "1984 was a good book!";
 for (var i = 0; i < word.length; i++) {      
   console.log(word.charCodeAt(i));  //+32 da fuk
 }
 
-var updateWord = function(letter) {
-hiddenWord = "";
-  for (var i = 0; i < word.length; i++) {
-    if ( ((word.charCodeAt(i)) >= 65) && (word.charCodeAt(i) <= 90) || ((word.charCodeAt(i) >= 97) && (word.charCodeAt(i) <= 122)) )  {  //if it's a letter, replace it with .
-      hiddenWord += ".";
-    }
-    else {
-      hiddenWord += word[i]; //or else replace it with the character
-
+var updateWord = function() {
+hiddenWord = "";     
+  for (var i = 0; i < word.length; i++) { 
+    hiddenWord += ".";
+    for (var p = 0; p < guessed.length; p++){  //looking thru every punctuation and guessed letter
+      // and looking thru every letter in the puzzle word
+      if (word.charCodeAt(i) === guessed[p]) { //if the js char code at the given letter is in guessed array
+        hiddenWord += word[i];   // add that letter from the puzzle word to the hidden word
+      }
+  
     }
   }
 }
 updateWord();
-var hiddenWordPlace = document.getElementsByClassName('wordHolder');
-hiddenWordPlace[0].textContent = hiddenWord;
+   hiddenWordPlace[0].textContent = hiddenWord;
+
 
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
@@ -59,21 +68,27 @@ hiddenWordPlace[0].textContent = hiddenWord;
 //Player.prototype.guess = function() {
 
   document.addEventListener("keydown", function(event) {
-    guessedLetters.push(event.which);
-    hiddenWord = "";
-    for (var i = 0; i < word.length; i++) {
-      if (word.charCodeAt(i) === (event.which + 32)) {
-        hiddenWord += word[i];
-      }
-      else if ( ((word.charCodeAt(i)) >= 65) && (word.charCodeAt(i) <= 90) || ((word.charCodeAt(i) >= 97) && (word.charCodeAt(i) <= 122)) )  {  //if it's a letter, replace it with .
-        hiddenWord += ".";
-      }
-      else {
-        hiddenWord += word[i]; //or else replace it with the character
-      }
-    }
-  hiddenWordPlace[0].textContent = hiddenWord;
+    guessed.push((event.which+32));
+    updateWord();
   })
+
+      //hiddenWord = "";
+
+  //   for (var i = 0; i < word.length; i++) {
+  //     if (word.charCodeAt(i) === (event.which + 32)) {
+  //       hiddenWord += word[i];
+  //     }
+  //     else if ( ((word.charCodeAt(i)) >= 65) && (word.charCodeAt(i) <= 90) || ((word.charCodeAt(i) >= 97) && (word.charCodeAt(i) <= 122)) )  {  //if it's a letter, replace it with .
+  //       hiddenWord += ".";
+  //     }
+  //     else {
+  //       hiddenWord += word[i]; //or else replace it with the character
+  //     }
+  //   }
+
+    
+  // hiddenWordPlace[0].textContent = hiddenWord;
+
  //    for (var i = 0; i < word.length; i++) {   //looping thru the word
  //      hiddenWord = "";
  //      if (word.charCodeAt(i) === (event.which + 32)) {    // testing if the letters in the word match the keypress
@@ -135,20 +150,20 @@ hiddenWordPlace[0].textContent = hiddenWord;
 //\\\/\/\/\/\/\/\/\\\/\/   Create Player Names     \\\//\/\///\/\/\\\/\/\\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 
-var submitButton = document.querySelector('button[name="submit"]');
-submitButton.addEventListener('click', function(){
-  var player1Name = document.getElementById('p1Name').value;
-  var player2Name = document.getElementById('p2Name').value;
-  var para = document.createElement('p');
+// var submitButton = document.querySelector('button[name="submit"]');
+// submitButton.addEventListener('click', function(){
+//   var player1Name = document.getElementById('p1Name').value;
+//   var player2Name = document.getElementById('p2Name').value;
+//   var para = document.createElement('p');
 
-  player1.name = player1Name;
-  player2.name = player2Name;
+//   player1.name = player1Name;
+//   player2.name = player2Name;
 
-  //also, remove the boxes and button. 
+//   //also, remove the boxes and button. 
 
-  para.innerHTML += player1Name + " vs " + player2Name;
-  document.body.appendChild(para);
-})
+//   para.innerHTML += player1Name + " vs " + player2Name;
+//   document.body.appendChild(para);
+// })
 
 //this is still reading your typing codes. problem? 
 
@@ -178,15 +193,15 @@ pointButton.addEventListener('click', function(){
 //\\//\\//\\/\\//\\//\\/////\   Determine Turn   \\///\\//\\//\\/\\//\\//\\/
 //\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
 
-  if (counter % 2 !== 0) {  //use object prototype?
-    console.log("It's Player 1's Turn");
-    //underline 
-  }
-  else {
-    console.log("It's Player 2's Turn");
-    //underline
-  }
-// }
+//   if (counter % 2 !== 0) {  //use object prototype?
+//     console.log("It's Player 1's Turn");
+//     //underline 
+//   }
+//   else {
+//     console.log("It's Player 2's Turn");
+//     //underline
+//   }
+// // }
 
 
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
