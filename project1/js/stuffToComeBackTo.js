@@ -18,6 +18,7 @@ var counter = 0;
 var keyPressPermission = false;
 var wordCollection = [];
 var word = ""; //eventually an API call, or something from an array/object of words
+var wordDescription = "";
 var hiddenWord = ""; 
 var pointAmount = 0;
 var body = document.body;
@@ -44,14 +45,14 @@ var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 
 var chooseWord = function() {
   word = "";
- // var randomize = Math.round(Math.random()*wordCollection.length);
   try { 
-    word = wordCollection[Math.round(Math.random()*wordCollection.length)].title.toLowerCase();
+    var randomize = Math.round(Math.random()*wordCollection.length);
+    word = wordCollection[randomize].title.toLowerCase();
+    wordDescription = wordCollection[randomize].extract;
   }
   catch (err) {
     console.log(err + "API not loaded yet! Give it a second.");
   }
-  return word;
 }
 
 var wordChooseButton = document.querySelector('button[name="choosingButton"]');
@@ -70,6 +71,7 @@ var didSomeoneWin = function () {
     }
     if (winCounter === hiddenWord.length) {
       console.log("someone won");
+      hiddenWordPlace[0].innerHTML += wordDescription;
     }
 }
 
@@ -212,7 +214,6 @@ var pointsPlace = document.getElementsByClassName('pointHolder'); //this is an A
 pointButton.addEventListener('click', function(){
   if (keyPressPermission === false) { 
     pointAmount = Math.round(1000 * Math.random());
-    console.log(pointAmount);
     pointsPlace[0].innerHTML = pointAmount; 
     keyPressPermission = true;
     //return pointAmount;
@@ -264,6 +265,9 @@ $(document).ready(function(){
   $.ajax(currentWorldLeaders);
   $.ajax(cryptids);
   $.ajax(arnold);
+  $.ajax(gods);
+  $.ajax(kanban);
+  $.ajax(tea);
 })
 
 // $.ajax({
@@ -314,6 +318,52 @@ var arnold = {
        console.log(err);
     }
   };
+
+
+var gods = {
+  url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=greek%20gods&format=json',
+  dataType: 'jsonp',
+    jsonp: 'callback',
+    success: function(data) {
+      var entry = data.query.pages;
+      for(var prop in entry) {
+        wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
+      }
+    },
+    error: function(err) {
+       console.log(err);
+    }
+}
+
+var kanban = {
+  url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=kanban&format=json',
+  dataType: 'jsonp',
+    jsonp: 'callback',
+    success: function(data) {
+      var entry = data.query.pages;
+      for(var prop in entry) {
+        wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
+      }
+    },
+    error: function(err) {
+       console.log(err);
+    }
+}
+
+var tea = {
+  url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=tea&format=json',
+  dataType: 'jsonp',
+    jsonp: 'callback',
+    success: function(data) {
+      var entry = data.query.pages;
+      for(var prop in entry) {
+        wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
+      }
+    },
+    error: function(err) {
+       console.log(err);
+    }
+}
 
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
