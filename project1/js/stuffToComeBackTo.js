@@ -16,6 +16,7 @@ var player2 = new Player("", 0, false);
 
 var counter = 0;
 var keyPressPermission = false;
+var wordCollection = [];
 var word = ""; //eventually an API call, or something from an array/object of words
 var hiddenWord = ""; 
 var pointAmount = 0;
@@ -240,11 +241,17 @@ var displayGuesses = function () {
 ////\\\\//\/\/\//\\/   API STUFF TO FIGURE OUT LATER   \\/\\\///\//\/\/\/\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 
-// $(document).ready(function(){
-// 	//$.ajax(ajaxArgument1);
-// 	$.ajax(ajaxArgument2);
-// 	$.ajax(ajaxArgument3);
-// })
+$(document).ready(function(){
+	// $.ajax(ajaxArgument1);
+	// $.ajax(ajaxArgument2);
+	// $.ajax(ajaxArgument3);
+  // $.ajax(ajaxArgument4);
+  $.ajax(currentWorldLeaders);
+  $.ajax(cryptids);
+
+})
+
+
 
 
 // $.ajax({
@@ -252,20 +259,20 @@ var displayGuesses = function () {
 // })
 
 
-// var ajaxArgument1 = {
-// 	  type: 'get',
-//     url: 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=pizza&format=json',
-//     //data: queryData,
-//     dataType: 'json',
-//     //Access-Control-Allow-Origin: *,
-//     headers: { 'user': 'Ben Austin Student Project <benjaminboydaustin@gmail.com>' },
-//     success: function(data) {
-//     	console.log(data);
-//     },
-//     error: function(err){
-//     	console.log(err);
-//     }
-// };
+// // var ajaxArgument1 = {
+// // 	  type: 'get',
+// //     url: 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=pizza&format=json',
+// //     //data: queryData,
+// //     dataType: 'json',
+// //     //Access-Control-Allow-Origin: *,
+// //     headers: { 'user': 'Ben Austin Student Project <benjaminboydaustin@gmail.com>' },
+// //     success: function(data) {
+// //     	console.log(data);
+// //     },
+// //     error: function(err){
+// //     	console.log(err);
+// //     }
+// // };
 
 // var ajaxArgument2 = {
 // 	  url: 'http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=pizza&format=json',
@@ -287,8 +294,24 @@ var displayGuesses = function () {
 //     }
 // };
 
+// // var ajaxArgument3 = {
+// // 	url: 'https://en.wikipedia.org/w/api.php?action=query&titles=Red&prop=revisions&rvprop=content&format=json',
+// //     dataType: 'jsonp',
+// //     jsonp: 'callback',
+// //    // // data: { action: 'opensearch',
+// //    //          search: search_term,
+// //    //          limit: 5,
+// //    //          format: 'json' },
+// //     success: function(response) {
+// //       console.log(response);
+// //     },
+// //     error: function(err) {
+// //        console.log(err);
+// //     }
+// // 	};
+
 // var ajaxArgument3 = {
-// 	url: 'https://en.wikipedia.org/w/api.php?action=query&titles=Red&prop=revisions&rvprop=content&format=json',
+//   url: 'https://en.wikipedia.org/w/api.php?action=query&titles=List_of_current_heads_of_state_and_government&prop=revisions&rvprop=content&format=json',
 //     dataType: 'jsonp',
 //     jsonp: 'callback',
 //    // // data: { action: 'opensearch',
@@ -301,8 +324,66 @@ var displayGuesses = function () {
 //     error: function(err) {
 //        console.log(err);
 //     }
-// 	};
+//   };
 
+  // response.query.pages['24768'].revisions[0].title; //how to get around number? 
+
+var currentWorldLeaders = {
+  url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=current%20world%20leaders&format=json',
+    dataType: 'jsonp',
+    jsonp: 'callback',
+   // // data: { action: 'opensearch',
+   //          search: search_term,
+   //          limit: 5,
+   //          format: 'json' },
+    success: function(data) {
+      console.log(data.query.pages['47494181'].title + ": " + data.query.pages['47494181'].extract);
+    },
+    error: function(err) {
+       console.log(err);
+    }
+  };
+
+var cryptids = {
+  url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=Cryptids&format=json',
+    dataType: 'jsonp',
+    jsonp: 'callback',
+   // // data: { action: 'opensearch',
+   //          search: search_term,
+   //          limit: 5,
+   //          format: 'json' },
+    success: function(data) {
+      // console.log(data);
+      var entry = data.query.pages;
+      for(var prop in entry) {
+        // console.log(entry[prop].title + ": " + entry[prop].extract);
+        wordCollection.push(entry[prop].title);
+        wordCollection.push(entry[prop].extract);
+      }
+      console.log(wordCollection[4]);
+      console.log(wordCollection[5]);
+    },
+    error: function(err) {
+       console.log(err);
+    }
+  };
+
+
+// var ajaxArgument4 = { 
+//   url: 'https://en.wikipedia.org/w/api.php?action=query&titles=Articulatory_phonetics&prop=revisions&rvprop=content&format=json',
+//     dataType: 'jsonp',
+//     jsonp: 'callback',
+//    // // data: { action: 'opensearch',
+//    //          search: search_term,
+//    //          limit: 5,
+//    //          format: 'json' },
+//     success: function(response) {
+//       console.log(response);
+//     },
+//     error: function(err) {
+//        console.log(err);
+//     }
+//   };
 
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
