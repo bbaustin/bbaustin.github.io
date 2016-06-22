@@ -32,8 +32,8 @@ for (var i = 123; i < 300; i++){ //z is 122 [91 + 32]
 
 var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 
+  
 
-//hiddenWordPlace[0].appendChild(hiddenWord); //why don't u work
 
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
@@ -42,13 +42,24 @@ var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 
 //make like a button show up once wordCollection has reached a certain length
 
-var chooseWord = function(wordList) {
+var chooseWord = function() {
   word = "";
  // var randomize = Math.round(Math.random()*wordCollection.length);
-  word = wordCollection[Math.round(Math.random()*wordCollection.length)].title;
+  try { 
+    word = wordCollection[Math.round(Math.random()*wordCollection.length)].title.toLowerCase();
+  }
+  catch (err) {
+    console.log(err + "API not loaded yet! Give it a second.");
+  }
   return word;
 }
 
+var wordChooseButton = document.querySelector('button[name="choosingButton"]');
+wordChooseButton.addEventListener('click', function(){
+    wordChooseButton.style.display = 'none';
+    chooseWord();
+    updateWord();
+  })
 
 var winCounter = 0;
 var didSomeoneWin = function () {
@@ -87,7 +98,7 @@ var inTheWord = function (charCode) { //you will be passing a charCode via ur ke
 
 var updateWord = function() {
 hiddenWord = "";     
-  for (var i = 0; i < word.length; i++) { ////////
+  for (var i = 0; i < word.length; i++) { 
     if (!alreadyGuessed(word.charCodeAt(i))){
       hiddenWord += ".";
     }
@@ -98,7 +109,7 @@ hiddenWord = "";
   hiddenWordPlace[0].textContent = hiddenWord;
   didSomeoneWin();
 }
-updateWord();
+//updateWord();
 
 //\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
 //\\//\\//\\/\\//\\//\\/////\   Determine Turn   \\///\\//\\//\\/\\//\\//\\/
@@ -304,7 +315,6 @@ var arnold = {
     }
   };
 
-chooseWord();
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   Create color buttons     \\\//\/\///\/\/\\\/\/\\\
