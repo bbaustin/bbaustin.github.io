@@ -55,11 +55,30 @@ var chooseWord = function() {
   }
 }
 
+var startOver = function() {
+  wordChooseButton.style.display = 'none';
+  guessed = [];
+  for (var i = 0; i < 97; i++){ //a is 97 [65 + 32]
+    guessed.push(i); // (i + 32)?
+  }
+  for (var i = 123; i < 300; i++){ //z is 122 [91 + 32]
+    guessed.push(i);
+  }
+  chooseWord();
+  updateWord();
+  guessesPlace[0].innerHTML = "<br />";
+  scoreP1 = 0;
+  scoreP2 = 0;
+  p1ScorePlace[0].innerHTML = scoreP1;
+  p2ScorePlace[0].innerHTML = scoreP2;
+}
+
 var wordChooseButton = document.querySelector('button[name="choosingButton"]');
 wordChooseButton.addEventListener('click', function(){
-    wordChooseButton.style.display = 'none';
-    chooseWord();
-    updateWord();
+    // wordChooseButton.style.display = 'none';
+    // chooseWord();
+    // updateWord();
+    startOver();
   })
 
 var winCounter = 0;
@@ -72,9 +91,24 @@ var didSomeoneWin = function () {
     if (winCounter === hiddenWord.length) {
       console.log("someone won");
       hiddenWordPlace[0].innerHTML += wordDescription;
+      hiddenWordPlace[0].innerHTML += whoWon(scoreP1, scoreP2);
+      hiddenWordPlace[0].appendChild(wordChooseButton);
+      wordChooseButton.style.display = 'inline';
+      wordChooseButton.textContent = 'Play Again?';
     }
 }
 
+var whoWon = function(score1, score2) {
+  if (score1 > score2) {
+    return "Player 1 Won!";
+  }
+  else if (score2 > score1) {
+    return "Player 2 Won!";
+  }
+  else { 
+    return "The chances of a tie are extremely low! Was there really a tie, or is this an error?";
+  }
+}
 
 var alreadyGuessed = function(charCode) {
   for (var i = 0; i < guessed.length; i++) {
