@@ -39,8 +39,16 @@ var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   HIDE the word     \\\//\/\///\/\/\\\/\/\\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
-word = "i <3 javascript";
- 
+
+//make like a button show up once wordCollection has reached a certain length
+
+var chooseWord = function(wordList) {
+  word = "";
+ // var randomize = Math.round(Math.random()*wordCollection.length);
+  word = wordCollection[Math.round(Math.random()*wordCollection.length)].title;
+  return word;
+}
+
 
 var winCounter = 0;
 var didSomeoneWin = function () {
@@ -242,102 +250,24 @@ var displayGuesses = function () {
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 
 $(document).ready(function(){
-	// $.ajax(ajaxArgument1);
-	// $.ajax(ajaxArgument2);
-	// $.ajax(ajaxArgument3);
-  // $.ajax(ajaxArgument4);
   $.ajax(currentWorldLeaders);
   $.ajax(cryptids);
-
+  $.ajax(arnold);
 })
-
-
-
 
 // $.ajax({
 // 	//everything goes here. Cleaner than variables, ostensibly.
 // })
 
-
-// // var ajaxArgument1 = {
-// // 	  type: 'get',
-// //     url: 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=pizza&format=json',
-// //     //data: queryData,
-// //     dataType: 'json',
-// //     //Access-Control-Allow-Origin: *,
-// //     headers: { 'user': 'Ben Austin Student Project <benjaminboydaustin@gmail.com>' },
-// //     success: function(data) {
-// //     	console.log(data);
-// //     },
-// //     error: function(err){
-// //     	console.log(err);
-// //     }
-// // };
-
-// var ajaxArgument2 = {
-// 	  url: 'http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=pizza&format=json',
-//     dataType: 'jsonp',
-//     jsonp: 'callback',
-//    // // data: { action: 'opensearch',
-//    //          search: search_term,
-//    //          limit: 5,
-//    //          format: 'json' },
-//     success: function(response) {  //strangely this works
-//       console.log(response);
-//       var newH2 = document.createElement('h2');
-//       newH2.innerHTML += response.query.pages['24768'].revisions[0].title; //how to get around number? 
-//       console.log('LOOK HERE');
-//       console.log(response.query.pages['24768'].title);
-//     },
-//     error: function(err) {
-//        console.log(err);
-//     }
-// };
-
-// // var ajaxArgument3 = {
-// // 	url: 'https://en.wikipedia.org/w/api.php?action=query&titles=Red&prop=revisions&rvprop=content&format=json',
-// //     dataType: 'jsonp',
-// //     jsonp: 'callback',
-// //    // // data: { action: 'opensearch',
-// //    //          search: search_term,
-// //    //          limit: 5,
-// //    //          format: 'json' },
-// //     success: function(response) {
-// //       console.log(response);
-// //     },
-// //     error: function(err) {
-// //        console.log(err);
-// //     }
-// // 	};
-
-// var ajaxArgument3 = {
-//   url: 'https://en.wikipedia.org/w/api.php?action=query&titles=List_of_current_heads_of_state_and_government&prop=revisions&rvprop=content&format=json',
-//     dataType: 'jsonp',
-//     jsonp: 'callback',
-//    // // data: { action: 'opensearch',
-//    //          search: search_term,
-//    //          limit: 5,
-//    //          format: 'json' },
-//     success: function(response) {
-//       console.log(response);
-//     },
-//     error: function(err) {
-//        console.log(err);
-//     }
-//   };
-
-  // response.query.pages['24768'].revisions[0].title; //how to get around number? 
-
 var currentWorldLeaders = {
   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=current%20world%20leaders&format=json',
     dataType: 'jsonp',
     jsonp: 'callback',
-   // // data: { action: 'opensearch',
-   //          search: search_term,
-   //          limit: 5,
-   //          format: 'json' },
     success: function(data) {
-      console.log(data.query.pages['47494181'].title + ": " + data.query.pages['47494181'].extract);
+      var entry = data.query.pages;
+      for(var prop in entry) {
+        wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
+      }
     },
     error: function(err) {
        console.log(err);
@@ -348,43 +278,33 @@ var cryptids = {
   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=Cryptids&format=json',
     dataType: 'jsonp',
     jsonp: 'callback',
-   // // data: { action: 'opensearch',
-   //          search: search_term,
-   //          limit: 5,
-   //          format: 'json' },
     success: function(data) {
-      // console.log(data);
       var entry = data.query.pages;
       for(var prop in entry) {
-        // console.log(entry[prop].title + ": " + entry[prop].extract);
-        wordCollection.push(entry[prop].title);
-        wordCollection.push(entry[prop].extract);
+        wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
       }
-      console.log(wordCollection[4]);
-      console.log(wordCollection[5]);
     },
     error: function(err) {
        console.log(err);
     }
   };
 
+var arnold = {
+  url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=arnold%20schwarzenegger&format=json',
+    dataType: 'jsonp',
+    jsonp: 'callback',
+    success: function(data) {
+      var entry = data.query.pages;
+      for(var prop in entry) {
+        wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
+      }
+    },
+    error: function(err) {
+       console.log(err);
+    }
+  };
 
-// var ajaxArgument4 = { 
-//   url: 'https://en.wikipedia.org/w/api.php?action=query&titles=Articulatory_phonetics&prop=revisions&rvprop=content&format=json',
-//     dataType: 'jsonp',
-//     jsonp: 'callback',
-//    // // data: { action: 'opensearch',
-//    //          search: search_term,
-//    //          limit: 5,
-//    //          format: 'json' },
-//     success: function(response) {
-//       console.log(response);
-//     },
-//     error: function(err) {
-//        console.log(err);
-//     }
-//   };
-
+chooseWord();
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   Create color buttons     \\\//\/\///\/\/\\\/\/\\\
