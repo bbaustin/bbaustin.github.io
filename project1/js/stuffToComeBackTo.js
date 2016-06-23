@@ -295,109 +295,132 @@ var displayGuesses = function () {
 ////\\\\//\/\/\//\\/   API STUFF TO FIGURE OUT LATER   \\/\\\///\//\/\/\/\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 
-$(document).ready(function(){
-  $.ajax(currentWorldLeaders);
-  $.ajax(cryptids);
-  $.ajax(arnold);
-  $.ajax(gods);
-  $.ajax(kanban);
-  $.ajax(tea);
-})
-
-// $.ajax({
-// 	//everything goes here. Cleaner than variables, ostensibly.
+// $(document).ready(function(){
+//   $.ajax(currentWorldLeaders);
+//   $.ajax(cryptids);
+//   $.ajax(arnold);
+//   $.ajax(gods);
+//   $.ajax(kanban);
+//   $.ajax(tea);
 // })
 
-var currentWorldLeaders = {
-  url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=current%20world%20leaders&format=json',
+var urlArray = ['current%20world%20leaders', 'Cryptids', 'arnold%20schwarzenegger', 'sarah%20records', 'bassoon', 'rice%20krispies', 'kanban', 'kwaidan', 'greek%20gods', 'tea',];
+
+for (var i = 0; i < urlArray.length; i++) {
+  $.ajax({
+    url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=' + urlArray[i] + '&format=json',
     dataType: 'jsonp',
     jsonp: 'callback',
     success: function(data) {
       var entry = data.query.pages;
+      console.log(entry);
       for(var prop in entry) {
-        wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
+        if ((entry[prop].title.indexOf("List") === -1) && (entry[prop].title.indexOf("(") === -1)) {
+            wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
+        }
       }
+    
     },
     error: function(err) {
        console.log(err);
     }
-  };
-
-var cryptids = {
-  url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=Cryptids&format=json',
-    dataType: 'jsonp',
-    jsonp: 'callback',
-    success: function(data) {
-      var entry = data.query.pages;
-      for(var prop in entry) {
-        wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
-      }
-    },
-    error: function(err) {
-       console.log(err);
-    }
-  };
-
-var arnold = {
-  url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=arnold%20schwarzenegger&format=json',
-    dataType: 'jsonp',
-    jsonp: 'callback',
-    success: function(data) {
-      var entry = data.query.pages;
-      for(var prop in entry) {
-        wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
-      }
-    },
-    error: function(err) {
-       console.log(err);
-    }
-  };
-
-
-var gods = {
-  url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=greek%20gods&format=json',
-  dataType: 'jsonp',
-    jsonp: 'callback',
-    success: function(data) {
-      var entry = data.query.pages;
-      for(var prop in entry) {
-        wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
-      }
-    },
-    error: function(err) {
-       console.log(err);
-    }
+  });
 }
 
-var kanban = {
-  url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=kanban&format=json',
-  dataType: 'jsonp',
-    jsonp: 'callback',
-    success: function(data) {
-      var entry = data.query.pages;
-      for(var prop in entry) {
-        wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
-      }
-    },
-    error: function(err) {
-       console.log(err);
-    }
-}
+// var genTopics = function (address) {
 
-var tea = {
-  url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=tea&format=json',
-  dataType: 'jsonp',
-    jsonp: 'callback',
-    success: function(data) {
-      var entry = data.query.pages;
-      for(var prop in entry) {
-        wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
-      }
-    },
-    error: function(err) {
-       console.log(err);
-    }
-}
+// } 
+
+// var currentWorldLeaders = {
+//   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=current%20world%20leaders&format=json',
+//     dataType: 'jsonp',
+//     jsonp: 'callback',
+//     success: function(data) {
+//       var entry = data.query.pages;
+//       for(var prop in entry) {
+//         wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
+//       }
+//     },
+//     error: function(err) {
+//        console.log(err);
+//     }
+//   };
+
+// var cryptids = {
+//   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=Cryptids&format=json',
+//     dataType: 'jsonp',
+//     jsonp: 'callback',
+//     success: function(data) {
+//       var entry = data.query.pages;
+//       for(var prop in entry) {
+//         wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
+//       }
+//     },
+//     error: function(err) {
+//        console.log(err);
+//     }
+//   };
+
+// var arnold = {
+//   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=arnold%20schwarzenegger&format=json',
+//     dataType: 'jsonp',
+//     jsonp: 'callback',
+//     success: function(data) {
+//       var entry = data.query.pages;
+//       for(var prop in entry) {
+//         wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
+//       }
+//     },
+//     error: function(err) {
+//        console.log(err);
+//     }
+//   };
+
+
+// var gods = {
+//   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=greek%20gods&format=json',
+//   dataType: 'jsonp',
+//     jsonp: 'callback',
+//     success: function(data) {
+//       var entry = data.query.pages;
+//       for(var prop in entry) {
+//         wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
+//       }
+//     },
+//     error: function(err) {
+//        console.log(err);
+//     }
+// }
+
+// var kanban = {
+//   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=kanban&format=json',
+//   dataType: 'jsonp',
+//     jsonp: 'callback',
+//     success: function(data) {
+//       var entry = data.query.pages;
+//       for(var prop in entry) {
+//         wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
+//       }
+//     },
+//     error: function(err) {
+//        console.log(err);
+//     }
+// }
+
+// var tea = {
+//   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=tea&format=json',
+//   dataType: 'jsonp',
+//     jsonp: 'callback',
+//     success: function(data) {
+//       var entry = data.query.pages;
+//       for(var prop in entry) {
+//         wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
+//       }
+//     },
+//     error: function(err) {
+//        console.log(err);
+//     }
+// }
 
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
