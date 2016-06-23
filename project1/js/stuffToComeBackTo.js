@@ -313,7 +313,10 @@ sunset.innerHTML = "Astrud";
 themesList[0].appendChild(sunset);
 var lounge = document.createElement('li');
 lounge.innerHTML = "Lounge";
-themesList[0].appendChild(lounge);    
+themesList[0].appendChild(lounge);   
+var woods = document.createElement('li');
+woods.innerHTML = "Woods";
+themesList[0].appendChild(woods); 
 
 
 
@@ -350,14 +353,20 @@ var changeCSS = function (bgColor, bgImage, fontColor) {
 }
 
  sunset.addEventListener('click', function(){
-   changeCSS('rgba(0,0,0,0)', 'url(media/woodsdark-sm.gif)', '#c9d2d7');
+   changeCSS('rgba(0,0,0,0)', 'linear-gradient(#bfb892, #f0ff00)', '#242424');
    console.log('sunset clicked');
  })
 
-// lounge.addEventListener('click', function(){
-//   changeCSS('bgLounge', 'none');
-//   console.log('lounge clicked');
-// })
+lounge.addEventListener('click', function(){
+   changeCSS('#c9c9c9', 'none', '#242424');
+   console.log('lounge clicked');
+})
+
+woods.addEventListener('click', function(){
+   changeCSS('rgba(0,0,0,0)', 'url(media/woodsdark-sm.gif)', '#c9d2d7');
+   console.log('lounge clicked');
+})
+
 
 // lounge.addEventListener('click', function(){
 //   body.
