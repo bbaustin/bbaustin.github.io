@@ -23,16 +23,19 @@ var hiddenWord = "";
 var pointAmount = 0;
 var body = document.body;
 var guessed = [];
-for (var i = 0; i < 97; i++){ //a is 97 [65 + 32]
-  guessed.push(i); // (i + 32)?
-}
-for (var i = 123; i < 300; i++){ //z is 122 [91 + 32]
-  guessed.push(i);
-}
+// for (var i = 0; i < 97; i++){ //a is 97 [65 + 32]
+//   guessed.push(i); // (i + 32)?
+// }
+// for (var i = 123; i < 300; i++){ //z is 122 [91 + 32]
+//   guessed.push(i);
+// }
 
 
 var hiddenWordPlace = document.getElementsByClassName('wordHolder');
 
+var pointButton = document.querySelector('button[name="pointAmount"]');
+
+var pointsPlace = document.getElementsByClassName('pointHolder'); //this is an ARRAY
   
 
 
@@ -71,13 +74,13 @@ var startOver = function() {
   scoreP2 = 0;
   p1ScorePlace[0].innerHTML = scoreP1;
   p2ScorePlace[0].innerHTML = scoreP2;
+  pointButton.style.display = 'inline';
+  pointsPlace[0].style.display = 'inline'; 
+  messagePlace[0].style.display = 'inline'; 
 }
 
 var wordChooseButton = document.querySelector('button[name="choosingButton"]');
 wordChooseButton.addEventListener('click', function(){
-    // wordChooseButton.style.display = 'none';
-    // chooseWord();
-    // updateWord();
     startOver();
   })
 
@@ -100,12 +103,24 @@ var didSomeoneWin = function () {
 
 var whoWon = function(score1, score2) {
   if (score1 > score2) {
-    return "Player 1 Won!";
+    pointButton.style.display = "none";
+    pointsPlace[0].innerHTML = "";
+    //pointsPlace[0].style.display = "none";
+    messagePlace[0].style.display = "none";
+    return "Player 1 Won! <br />";
   }
   else if (score2 > score1) {
-    return "Player 2 Won!";
+    pointButton.style.display = "none";
+    pointsPlace[0].innerHTML = "";
+   // pointsPlace[0].style.display = "none";
+    messagePlace[0].style.display = "none";   
+    return "Player 2 Won! <br />";
   }
   else { 
+    pointButton.style.display = "none";
+    pointsPlace[0].innerHTML = "";
+    //pointsPlace[0].style.display = "none";
+    messagePlace[0].style.display = "none";     
     return "The chances of a tie are extremely low! Was there really a tie, or is this an error?";
   }
 }
@@ -131,7 +146,6 @@ var inTheWord = function (charCode) { //you will be passing a charCode via ur ke
     }
   }
 }
-
 var updateWord = function() {
 hiddenWord = "";     
   for (var i = 0; i < word.length; i++) { 
@@ -152,10 +166,11 @@ hiddenWord = "";
 //\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
 var p1Place = document.getElementsByClassName("p1Info");
 var p2Place = document.getElementsByClassName("p2Info");
-
+var messagePlace = document.getElementsByClassName("messageHolder");
 
 var tellWhoseTurn = function () {
    if (counter % 2 === 0) {  //use object prototype?
+     messagePlace[0].innerHTML = "It's Player 1's Turn";
      console.log("It's Player 1's Turn");
      player1.turn = true;
      player2.turn = false;
@@ -166,6 +181,7 @@ var tellWhoseTurn = function () {
      //underline 
    }
    else {
+     messagePlace[0].innerHTML = "It's Player 2's Turn";
      console.log("It's Player 2's Turn");
      player1.turn = false;
      player2.turn = true;
@@ -202,11 +218,13 @@ tellWhoseTurn();
         }
       }
       else {
+        messagePlace[0].innerHTML = "Please guess a letter than hasn't been guessed";
         console.log("Please guess a letter than hasn't been guessed");
       }
       updateWord();  
     }
   else {
+    messagePlace[0].innerHTML = "Please spin before guessing a letter";    
     console.log("Please spin before guessing a letter.");
   }
 })
@@ -240,9 +258,6 @@ tellWhoseTurn();
 //\\//\\//\\/\\//\\//\\/  Generate point amount   \\//\\//\\\/\\\/\\\//\\\/\\
 //\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
 
-var pointButton = document.querySelector('button[name="pointAmount"]');
-
-var pointsPlace = document.getElementsByClassName('pointHolder'); //this is an ARRAY
 
 
 pointButton.addEventListener('click', function(){
@@ -253,6 +268,7 @@ pointButton.addEventListener('click', function(){
     //return pointAmount;
   }
   else {
+    messagePlace[0].innerHTML = "Please guess a letter before spinning again";
     console.log("Please guess a letter before spinning again");
   }
 })
@@ -290,19 +306,9 @@ var displayGuesses = function () {
   }
 }
 
-
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 ////\\\\//\/\/\//\\/   API STUFF TO FIGURE OUT LATER   \\/\\\///\//\/\/\/\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
-
-// $(document).ready(function(){
-//   $.ajax(currentWorldLeaders);
-//   $.ajax(cryptids);
-//   $.ajax(arnold);
-//   $.ajax(gods);
-//   $.ajax(kanban);
-//   $.ajax(tea);
-// })
 
 var urlArray = ['current%20world%20leaders', 'Cryptids', 'arnold%20schwarzenegger', 'sarah%20records', 'bassoon', 'rice%20krispies', 'kanban', 'kwaidan', 'greek%20gods', 'tea',];
 
@@ -326,102 +332,6 @@ for (var i = 0; i < urlArray.length; i++) {
     }
   });
 }
-
-// var genTopics = function (address) {
-
-// } 
-
-// var currentWorldLeaders = {
-//   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=current%20world%20leaders&format=json',
-//     dataType: 'jsonp',
-//     jsonp: 'callback',
-//     success: function(data) {
-//       var entry = data.query.pages;
-//       for(var prop in entry) {
-//         wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
-//       }
-//     },
-//     error: function(err) {
-//        console.log(err);
-//     }
-//   };
-
-// var cryptids = {
-//   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=Cryptids&format=json',
-//     dataType: 'jsonp',
-//     jsonp: 'callback',
-//     success: function(data) {
-//       var entry = data.query.pages;
-//       for(var prop in entry) {
-//         wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
-//       }
-//     },
-//     error: function(err) {
-//        console.log(err);
-//     }
-//   };
-
-// var arnold = {
-//   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=arnold%20schwarzenegger&format=json',
-//     dataType: 'jsonp',
-//     jsonp: 'callback',
-//     success: function(data) {
-//       var entry = data.query.pages;
-//       for(var prop in entry) {
-//         wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
-//       }
-//     },
-//     error: function(err) {
-//        console.log(err);
-//     }
-//   };
-
-
-// var gods = {
-//   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=greek%20gods&format=json',
-//   dataType: 'jsonp',
-//     jsonp: 'callback',
-//     success: function(data) {
-//       var entry = data.query.pages;
-//       for(var prop in entry) {
-//         wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
-//       }
-//     },
-//     error: function(err) {
-//        console.log(err);
-//     }
-// }
-
-// var kanban = {
-//   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=kanban&format=json',
-//   dataType: 'jsonp',
-//     jsonp: 'callback',
-//     success: function(data) {
-//       var entry = data.query.pages;
-//       for(var prop in entry) {
-//         wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
-//       }
-//     },
-//     error: function(err) {
-//        console.log(err);
-//     }
-// }
-
-// var tea = {
-//   url: 'https://en.wikipedia.org/w/api.php?&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&exsentences=1&exlimit=max&continue&pithumbsize=100&gsrsearch=tea&format=json',
-//   dataType: 'jsonp',
-//     jsonp: 'callback',
-//     success: function(data) {
-//       var entry = data.query.pages;
-//       for(var prop in entry) {
-//         wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
-//       }
-//     },
-//     error: function(err) {
-//        console.log(err);
-//     }
-// }
-
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   Create color buttons     \\\//\/\///\/\/\\\/\/\\\

@@ -447,6 +447,11 @@ div {
 body {
   background-color: #c9c9c9;
 }
+.spin {
+  display: none;
+  font-size: 2em;
+  font-family: 'Bungee', cursive;
+}
 .p1Info,
 .p2Info {
   border: 1px black dotted;
@@ -457,8 +462,18 @@ body {
   font-size: 2em;
   font-family: 'Bungee', cursive;
 }
+.pointHolder {
+  display: none;
+  font-size: 2.2em;
+  font-family: 'Bungee', cursive;
+}
 .letters {
   font-size: 1.2em;
+  font-family: 'Bungee Hairline', cursive;
+}
+.messageHolder {
+  display: none;
+  font-size: 1.5em;
   font-family: 'Bungee Hairline', cursive;
 }
 .lightbox-container {
