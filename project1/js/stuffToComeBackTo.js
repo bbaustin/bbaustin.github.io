@@ -36,6 +36,7 @@ var pointsPlace = document.getElementsByClassName('pointHolder'); //this is an A
 var p1ScorePlace = document.getElementsByClassName('p1Score');
 var p2ScorePlace = document.getElementsByClassName('p2Score');
 var wordChooseButton = document.querySelector('button[name="choosingButton"]');
+var guessesPlace = document.getElementsByClassName('letters');
 
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
@@ -75,7 +76,7 @@ var startOver = function() {
   messagePlace[0].style.display = 'inline'; 
 }
 
-wordChooseButton.addEventListener('click', function(){ //starts new games
+wordChooseButton.addEventListener('click', function(){ //starts new games, both at start and after finishing a game
     startOver();
   })
 
@@ -159,6 +160,7 @@ hiddenWord = "";
 var tellWhoseTurn = function () {
    if (counter % 2 === 0) {  //use object prototype?
      messagePlace[0].innerHTML = '<br /> Player one, Click Spin <br /> or dbl-click anywhere';
+     //MAKE SPIN BUTTON DO SOMETHING HERE?
      console.log("It's Player 1's Turn");
      player1.turn = true;
      player2.turn = false;
@@ -170,12 +172,13 @@ var tellWhoseTurn = function () {
    }
    else {
      messagePlace[0].innerHTML = '<br /> Player two, Click Spin <br /> or dbl-click anywhere';
+     //MAKE SPIN BUTTON DO SOMETHING HERE?
      console.log("It's Player 2's Turn");
      player1.turn = false;
      player2.turn = true;
-     p2Place[0].style.border = "5px solid black";
+     p2Place[0].style.border = "5px solid ";
      p2Place[0].style.borderRadius = "2px";
-     p1Place[0].style.border = "1px black dotted";     
+     p1Place[0].style.border = "1px dotted";     
      return "p2";
      //underline
    }
@@ -205,12 +208,14 @@ tellWhoseTurn();
         }
       }
       else {
+        //MAKE SPIN BUTTON NOT LOOK CLICKABLE HERE
         messagePlace[0].innerHTML = '<br /> Please guess a letter <br /> that hasn\'t been guessed';
         console.log("Please guess a letter than hasn't been guessed");
       }
       updateWord();  
     }
   else {
+    //MAKE SPIN BUTTON DO SOMETHING HERE?
     messagePlace[0].innerHTML = '<br /> Please spin before guessing a letter';    
     console.log(" Please spin before guessing a letter.");
   }
@@ -233,9 +238,11 @@ var spin = function () {
     pointAmount = Math.round(1000 * Math.random());
     pointsPlace[0].innerHTML = pointAmount; 
     keyPressPermission = true;
+    //MAKE SPIN BUTTON NOT LOOK CLICKABLE HERE
     messagePlace[0].innerHTML = '<br /> Now, guess a letter <br /> by pressing a key';
   }
   else {
+    //MAKE SPIN BUTTON NOT LOOK CLICKABLE HERE
     messagePlace[0].innerHTML = '<br />Please guess a letter <br /> before spinning again';
     console.log("Please guess a letter before spinning again");
   }
@@ -258,7 +265,6 @@ var addPoints = function () {
 //\\//\\//\\/\\//\\//\\/  Display Guessed Letters   \\//\\//\\\/\\\/\\\//\\\/\\
 //\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
 
-var guessesPlace = document.getElementsByClassName('letters');
 
 var displayGuesses = function () {
   guessesPlace[0].innerHTML = "";
@@ -299,27 +305,60 @@ for (var i = 0; i < urlArray.length; i++) {
 //\\\/\/\/\/\/\/\/\\\/\/   Create color buttons     \\\//\/\///\/\/\\\/\/\\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 
-// var arcadeSwitch = document.createElement('button');
-//     arcadeSwitch.style.backgroundColor = '#ff54b3';
-//     arcadeSwitch.style.margin = 'auto';
-//     arcadeSwitch.style.width = '15px';
-//     arcadeSwitch.style.height = '15px';
-//     arcadeSwitch.style.borderRadius = '50%';
-//     arcadeSwitch.style.border = 'solid #ff54b3 1px'
-//     document.body.appendChild(arcadeSwitch);
-// var sketchSwitch = document.createElement('button');
-//     sketchSwitch.style.backgroundColor = '#393939';
-//     sketchSwitch.style.margin = 'auto';
-//     sketchSwitch.style.width = '15px';
-//     sketchSwitch.style.height = '15px';
-//     sketchSwitch.style.borderRadius = '50%';
-//     sketchSwitch.style.border = 'solid #393939 1px'
-//     document.body.appendChild(sketchSwitch);    
+var themesList = document.getElementsByTagName('ul');
+var h1 = document.getElementsByTagName('h1');
 
-// arcadeSwitch.addEventListener('click', function(){
-// //can i harness the pwr of less to change multiple css properties here?
+var sunset = document.createElement('li');
+sunset.innerHTML = "Astrud";
+themesList[0].appendChild(sunset);
+var lounge = document.createElement('li');
+lounge.innerHTML = "Lounge";
+themesList[0].appendChild(lounge);    
+
+
+
+// var changeCSS = function () {
+//   document.body.style.backgroundColor = 'rgba(0,0,0,0)';  
+//   document.body.style.backgroundImage = 'url(media/woodsdark-sm.gif)'; //'linear-gradient(#ff5deb, #f0ff00)';
+//   h1[0].style.color = '#c9d2d7';
+//   themesList[0].style.color = '#c9d2d7';
+//   messagePlace[0].style.color = '#c9d2d7'; 
+//   pointsPlace[0].style.color = '#c9d2d7';
+//   hiddenWordPlace[0].style.color = '#c9d2d7';
+//   //$("#hiddenWordPlace[0]:first-child").style.color = '#c9d2d7';
+//   p1Place[0].style.color = '#c9d2d7';
+//   p2Place[0].style.color = '#c9d2d7';
+//   p1Place[0].style.border = '5px solid #c9d2d7';
+//   p2Place[0].style.border = '2px dotted #c9d2d7';
+//   guessesPlace[0].style.color = '#c9d2d7';
+// }
+
+var changeCSS = function (bgColor, bgImage, fontColor) {
+  document.body.style.backgroundColor = bgColor;  
+  document.body.style.backgroundImage = bgImage; //'linear-gradient(#ff5deb, #f0ff00)';
+  h1[0].style.color = fontColor;
+  themesList[0].style.color = fontColor;
+  messagePlace[0].style.color = fontColor;
+  pointsPlace[0].style.color = fontColor;
+  hiddenWordPlace[0].style.color = fontColor;
+  //$("#hiddenWordPlace[0]:first-child").style.color = '#c9d2d7';
+  p1Place[0].style.color = fontColor;
+  p2Place[0].style.color = fontColor;
+  p1Place[0].style.border = '5px solid  ' + fontColor ;
+  p2Place[0].style.border = '2px dotted ' + fontColor ;
+  guessesPlace[0].style.color = fontColor;
+}
+
+ sunset.addEventListener('click', function(){
+   changeCSS('rgba(0,0,0,0)', 'url(media/woodsdark-sm.gif)', '#c9d2d7');
+   console.log('sunset clicked');
+ })
+
+// lounge.addEventListener('click', function(){
+//   changeCSS('bgLounge', 'none');
+//   console.log('lounge clicked');
 // })
 
-// sketchSwitch.addEventListener('click', function(){
-// //can i harness the pwr of less to change multiple css properties here?
+// lounge.addEventListener('click', function(){
+//   body.
 // })

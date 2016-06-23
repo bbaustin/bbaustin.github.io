@@ -19,42 +19,28 @@
      </div>
    </header>
 	
-   <!--eventually layover thing-->
-    <!--   <div class="row">
-         <div class="col-4">
-		        <label for="p1Name">Player 1 Name: </label>
-		        <input type="text" id="p1Name" name="p1Name" value="" /> 
-         </div>
-         <div class="col-4">
-            <label for="p2Name">Player 2 Name: </label>
-		        <input type="text" id="p2Name" name="p2Name" value="" /> 
-         </div>
-		     <div class="col-2">
-            <button name="submit">Submit Names</button>
-         </div>
+  <main class="container">
+    <div class="row">
+      <div class="col-2">
+        <div class="p1Info">
+          player<br/> one
+          <div class="p1Score">0</div>
+        </div>
+      </div> 
+      <div class="col-8">
+        <div class="wordHolder">
+          <button name="choosingButton">Start!</button>
+        </div>
       </div>
-    </div>-->
-    <main class="container">
-      <div class="row">
-        <div class="col-2">
-          <div class="p1Info">
-            player<br/> one
-            <div class="p1Score">0</div>
-          </div>
-        </div> 
-        <div class="col-8">
-          <div class="wordHolder">
-            <button name="choosingButton">Start!</button>
-          </div>
+      <div class="col-2">  <!-- grid system not really working... col-2 makes a line break -->
+        <div class="p2Info">
+          player <br/> two
+          <div class="p2Score">0</div>
         </div>
-        <div class="col-2">  <!-- grid system not really working... col-2 makes a line break -->
-          <div class="p2Info">
-            player <br/> two
-            <div class="p2Score">0</div>
-          </div>
-        </div>
-      </div>  
+      </div>
+    </div>  
 
+    <div class="container">
       <div class="row">
         <div class="col-12">
 		      <button name="pointAmount" class="spin">Spin</button>
@@ -66,6 +52,14 @@
           <div class="messageHolder"></div>
         </div>
 	    </div>
+    </div>
+
+      <footer class = "container">
+        <div class = "row">
+          <ul class = "themes">
+          </ul>
+        </div>
+      </footer>
     </main>
 
 

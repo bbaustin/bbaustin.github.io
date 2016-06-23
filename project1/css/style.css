@@ -418,6 +418,19 @@ textarea {
   font: inherit; /* 2 */
 }
 
+html,
+body {
+  background: no-repeat center center fixed;
+  background-image: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #c9c9c9;
+}
+body {
+  min-height: 800px;
+}
 h1 {
   font-family: 'Bungee Shade', cursive;
   font-size: 4em;
@@ -432,7 +445,7 @@ h4,
 h5,
 h6 {
   font-weight: 100, 200, 300, 400;
-  color: #ff54b3;
+  color: #242424;
   font-size: 3em;
   font-family: 'Bungee', cursive;
 }
@@ -442,14 +455,18 @@ p {
   font-family: 'Bungee Hairline', cursive;
 }
 a {
-  color: #ff54b3;
+  color: #242424;
 }
 div {
   text-align: center;
   font-family: 'Bungee', cursive;
 }
-body {
-  background-color: #c9c9c9;
+ul {
+  display: inline;
+  list-style: none;
+}
+li:hover {
+  cursor: pointer;
 }
 .col-2 {
   user-select: none;
@@ -460,7 +477,7 @@ body {
 .spin {
   display: none;
   font-size: 2em;
-  font-family: 'Bungee', cursive;
+  font-family: 'Bungee Hairline', cursive;
   user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -483,7 +500,7 @@ body {
 .pointHolder {
   display: none;
   font-size: 2.2em;
-  font-family: 'Bungee', cursive;
+  font-family: 'Bungee Hairline', cursive;
   user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -492,6 +509,7 @@ body {
 .letters {
   font-size: 1.2em;
   font-family: 'Bungee Hairline', cursive;
+  color: inherit;
   user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -500,25 +518,11 @@ body {
 .messageHolder {
   display: none;
   font-size: 18px;
-  font-family: 'Bungee Hairline', cursive;
+  font-family: 'Bungee', cursive;
   user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
-}
-.lightbox-container {
-  position: fixed;
-  background: rgba(0, 0, 0, 0.75);
-  top: 50px;
-  left: 50px;
-  width: 80%;
-  height: 80%;
-}
-.lightbox-content {
-  width: 800px;
-  margin: auto;
-  position: relative;
-  font-size: 18px;
 }
 .container {
   padding: 0 20px;

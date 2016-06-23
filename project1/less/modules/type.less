@@ -2,6 +2,20 @@
 // MED --> font-family: 'Bungee', cursive;
 // SML --> font-family: 'Bungee Hairline', cursive;
 
+html, body {
+  background: no-repeat center center fixed;
+  background-image: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: @bgLounge;
+}
+
+body { 
+min-height: 800px;
+}
+
 h1 {
   font-family: 'Bungee Shade', cursive;
   font-size: 4em;
@@ -14,7 +28,7 @@ h1 {
 
 h2, h3, h4, h5, h6 {
   font-weight: 100, 200, 300, 400;
-  color: @txt2p1;
+  color: @black;
   font-size: 3em;
   font-family: 'Bungee', cursive;
 }
@@ -26,7 +40,7 @@ p {
 }
 
 a {
-  color: @txt2p1;
+  color: @black;
 }
 
 div {
@@ -34,8 +48,13 @@ div {
   font-family: 'Bungee', cursive;
 }
 
-body {
-	background-color: @bg2;
+ul {
+  display:inline;
+  list-style: none;
+}
+
+li:hover {
+  cursor: pointer;
 }
 
 .col-2 {
@@ -48,7 +67,7 @@ body {
 .spin {
   display: none;
   font-size: 2em;
-  font-family: 'Bungee', cursive;
+  font-family: 'Bungee Hairline', cursive;
   user-select: none; 
   -moz-user-select: none;
   -ms-user-select: none;
@@ -73,7 +92,7 @@ body {
 .pointHolder {
   display: none;
   font-size:2.2em;
-  font-family: 'Bungee', cursive;
+  font-family: 'Bungee Hairline', cursive;
   user-select: none; 
   -moz-user-select: none;
   -ms-user-select: none;
@@ -83,6 +102,7 @@ body {
 .letters {
   font-size: 1.2em;
   font-family: 'Bungee Hairline', cursive; 
+  color: inherit;
   user-select: none; 
   -moz-user-select: none;
   -ms-user-select: none;
@@ -92,30 +112,11 @@ body {
 .messageHolder {
   display: none;
   font-size: 18px;
-  font-family: 'Bungee Hairline', cursive;
+  font-family: 'Bungee', cursive;
   user-select: none; 
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
-
-
-
-}
-
-.lightbox-container {
-  position: fixed;
-  background: rgba(0,0,0,.75);
-  top: 50px;
-  left: 50px;
-  width:80%;
-  height: 80%; 
-}
-
-.lightbox-content {
-  width:800px;
-  margin:auto;
-  position: relative;
-  font-size: 18px;
 }
 
 
