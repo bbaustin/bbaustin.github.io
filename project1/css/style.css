@@ -429,7 +429,7 @@ body {
   background-color: #c9c9c9;
 }
 body {
-  min-height: 800px;
+  min-height: 700px;
 }
 h1 {
   font-family: 'Bungee Shade', cursive;
@@ -461,9 +461,26 @@ div {
   text-align: center;
   font-family: 'Bungee', cursive;
 }
+footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
 ul {
-  display: inline;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  font-family: 'Bungee Hairline', cursive;
   list-style: none;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+li {
+  display: inline;
 }
 li:hover {
   cursor: pointer;
