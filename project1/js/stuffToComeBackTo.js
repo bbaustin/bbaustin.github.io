@@ -5,7 +5,7 @@ console.log('Hello, I am working.');
 //\/\/\/\/\/\/\/   Global Variable & Object Declarations   /\/\///\/\/\\\/\/
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 
-function Player (name, score, turn) { //name needed?
+function Player (score, turn) { //hmm 
  	this.name  = name;
   this.score = score;
   this.turn = turn;
@@ -15,36 +15,32 @@ var player1 = new Player("", 0, true);
 var player2 = new Player("", 0, false);
 
 var counter = 0;
+var winCounter = 0;
 var keyPressPermission = false;
 var wordCollection = [];
-var word = ""; //eventually an API call, or something from an array/object of words
+var word = ""; 
 var wordDescription = "";
 var hiddenWord = ""; 
 var pointAmount = 0;
-var body = document.body;
+var scoreP1 = 0;
+var scoreP2 = 0; 
 var guessed = [];
-// for (var i = 0; i < 97; i++){ //a is 97 [65 + 32]
-//   guessed.push(i); // (i + 32)?
-// }
-// for (var i = 123; i < 300; i++){ //z is 122 [91 + 32]
-//   guessed.push(i);
-// }
 
-
+var body = document.body;
+var p1Place = document.getElementsByClassName("p1Info");
+var p2Place = document.getElementsByClassName("p2Info");
+var messagePlace = document.getElementsByClassName("messageHolder");
 var hiddenWordPlace = document.getElementsByClassName('wordHolder');
-
 var pointButton = document.querySelector('button[name="pointAmount"]');
-
 var pointsPlace = document.getElementsByClassName('pointHolder'); //this is an ARRAY
-  
-
+var p1ScorePlace = document.getElementsByClassName('p1Score');
+var p2ScorePlace = document.getElementsByClassName('p2Score');
+var wordChooseButton = document.querySelector('button[name="choosingButton"]');
 
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   HIDE the word     \\\//\/\///\/\/\\\/\/\\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
-
-//make like a button show up once wordCollection has reached a certain length
 
 var chooseWord = function() {
   word = "";
@@ -79,12 +75,10 @@ var startOver = function() {
   messagePlace[0].style.display = 'inline'; 
 }
 
-var wordChooseButton = document.querySelector('button[name="choosingButton"]');
-wordChooseButton.addEventListener('click', function(){
+wordChooseButton.addEventListener('click', function(){ //starts new games
     startOver();
   })
 
-var winCounter = 0;
 var didSomeoneWin = function () {
   winCounter = 0;
   for (var i = 0; i < word.length; i++)  
@@ -105,21 +99,18 @@ var whoWon = function(score1, score2) {
   if (score1 > score2) {
     pointButton.style.display = "none";
     pointsPlace[0].innerHTML = "";
-    //pointsPlace[0].style.display = "none";
     messagePlace[0].style.display = "none";
     return "Player 1 Won! <br />";
   }
   else if (score2 > score1) {
     pointButton.style.display = "none";
     pointsPlace[0].innerHTML = "";
-   // pointsPlace[0].style.display = "none";
     messagePlace[0].style.display = "none";   
     return "Player 2 Won! <br />";
   }
   else { 
     pointButton.style.display = "none";
     pointsPlace[0].innerHTML = "";
-    //pointsPlace[0].style.display = "none";
     messagePlace[0].style.display = "none";     
     return "The chances of a tie are extremely low! Was there really a tie, or is this an error?";
   }
@@ -146,6 +137,7 @@ var inTheWord = function (charCode) { //you will be passing a charCode via ur ke
     }
   }
 }
+
 var updateWord = function() {
 hiddenWord = "";     
   for (var i = 0; i < word.length; i++) { 
@@ -159,18 +151,14 @@ hiddenWord = "";
   hiddenWordPlace[0].textContent = hiddenWord;
   didSomeoneWin();
 }
-//updateWord();
 
 //\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
 //\\//\\//\\/\\//\\//\\/////\   Determine Turn   \\///\\//\\//\\/\\//\\//\\/
 //\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
-var p1Place = document.getElementsByClassName("p1Info");
-var p2Place = document.getElementsByClassName("p2Info");
-var messagePlace = document.getElementsByClassName("messageHolder");
 
 var tellWhoseTurn = function () {
    if (counter % 2 === 0) {  //use object prototype?
-     messagePlace[0].innerHTML = "It's Player 1's Turn";
+     messagePlace[0].innerHTML = '<br /> Player one, Click Spin <br /> or dbl-click anywhere';
      console.log("It's Player 1's Turn");
      player1.turn = true;
      player2.turn = false;
@@ -181,7 +169,7 @@ var tellWhoseTurn = function () {
      //underline 
    }
    else {
-     messagePlace[0].innerHTML = "It's Player 2's Turn";
+     messagePlace[0].innerHTML = '<br /> Player two, Click Spin <br /> or dbl-click anywhere';
      console.log("It's Player 2's Turn");
      player1.turn = false;
      player2.turn = true;
@@ -193,7 +181,6 @@ var tellWhoseTurn = function () {
    }
 }
 tellWhoseTurn();
-
 
 //\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
 //\\\/\/\/\/\/\/\/\\\/\/   GUESS the word     \\\//\/\///\/\/\\\/\/\\\
@@ -218,65 +205,41 @@ tellWhoseTurn();
         }
       }
       else {
-        messagePlace[0].innerHTML = "Please guess a letter than hasn't been guessed";
+        messagePlace[0].innerHTML = '<br /> Please guess a letter <br /> that hasn\'t been guessed';
         console.log("Please guess a letter than hasn't been guessed");
       }
       updateWord();  
     }
   else {
-    messagePlace[0].innerHTML = "Please spin before guessing a letter";    
-    console.log("Please spin before guessing a letter.");
+    messagePlace[0].innerHTML = '<br /> Please spin before guessing a letter';    
+    console.log(" Please spin before guessing a letter.");
   }
 })
-//}
-
-//win condition
-
-
-//\\//\\/\\/\/\\/\/\\/\/\/\/\\\/\/\\/\/\\\/////\/\/\/\\\/\/\/\/\/\/\/\/\/\\/\
-//\\\/\/\/\/\/\/\/\\\/\/   Create Player Names     \\\//\/\///\/\/\\\/\/\\\
-//\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
-
-// var submitButton = document.querySelector('button[name="submit"]');
-// submitButton.addEventListener('click', function(){
-//   var player1Name = document.getElementById('p1Name').value;
-//   var player2Name = document.getElementById('p2Name').value;
-//   var para = document.createElement('p');
-
-//   player1.name = player1Name;
-//   player2.name = player2Name;
-
-//   //also, remove the boxes and button. 
-
-//   para.innerHTML += player1Name + " vs " + player2Name;
-//   document.body.appendChild(para);
-// })
-
-//this is still reading your typing codes. problem? 
 
 //\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
 //\\//\\//\\/\\//\\//\\/  Generate point amount   \\//\\//\\\/\\\/\\\//\\\/\\
 //\\//\\\/\\\/\\\//\\\/\\//\\//\\//\\/\\//\\//\\///\\//\\//\\/\\//\\//\\/\\/\
 
-
+document.body.addEventListener('dblclick', function() {
+  spin();
+})
 
 pointButton.addEventListener('click', function(){
+  spin();
+})
+
+var spin = function () {
   if (keyPressPermission === false) { 
     pointAmount = Math.round(1000 * Math.random());
     pointsPlace[0].innerHTML = pointAmount; 
     keyPressPermission = true;
-    //return pointAmount;
+    messagePlace[0].innerHTML = '<br /> Now, guess a letter <br /> by pressing a key';
   }
   else {
-    messagePlace[0].innerHTML = "Please guess a letter before spinning again";
+    messagePlace[0].innerHTML = '<br />Please guess a letter <br /> before spinning again';
     console.log("Please guess a letter before spinning again");
   }
-})
-
-var p1ScorePlace = document.getElementsByClassName('p1Score');
-var p2ScorePlace = document.getElementsByClassName('p2Score');
-var scoreP1 = 0;
-var scoreP2 = 0; 
+} 
 
 var addPoints = function () {
   if (player1.turn === true) {
@@ -307,10 +270,10 @@ var displayGuesses = function () {
 }
 
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
-////\\\\//\/\/\//\\/   API STUFF TO FIGURE OUT LATER   \\/\\\///\//\/\/\/\
+////\\\\//\/\/\//\\/\\\  Generate Word Bank via AJAX  \\//\//\\/\\\///\//\/\\
 //\/\/\\\\/\\\/\/\/\/\\\/\/\/\/\/\/\\/\/\/\/\/\/\/\\\/\//////\\/\/\/\\\\\/\/\
 
-var urlArray = ['current%20world%20leaders', 'Cryptids', 'arnold%20schwarzenegger', 'sarah%20records', 'bassoon', 'rice%20krispies', 'kanban', 'kwaidan', 'greek%20gods', 'tea',];
+var urlArray = ['current%20world%20leaders', 'Cryptids', 'arnold%20schwarzenegger', 'sarah%20records', 'bassoon', 'rice%20krispies', 'kanban', 'kwaidan', 'greek%20gods', 'tea', 'anomalous%20weather'];
 
 for (var i = 0; i < urlArray.length; i++) {
   $.ajax({
@@ -319,7 +282,6 @@ for (var i = 0; i < urlArray.length; i++) {
     jsonp: 'callback',
     success: function(data) {
       var entry = data.query.pages;
-      console.log(entry);
       for(var prop in entry) {
         if ((entry[prop].title.indexOf("List") === -1) && (entry[prop].title.indexOf("(") === -1)) {
             wordCollection.push(entry[prop]); //this pushes each result object into your array. you can use wordCollection[x].title to get the title, etc. 
