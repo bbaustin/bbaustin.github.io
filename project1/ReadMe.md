@@ -8,8 +8,9 @@ This was a five-day project created for General Assembly's Web Development Immer
 This game was built with HTML, CSS, and JavaScript. jQuery was used to access the [Wikimedia API](https://www.mediawiki.org/wiki/API:Main_page), which generates the words players guess as well a short description of the hidden word after successfully completing the puzzle.  
 
 ##Wireframes & User Stories
-![wireframe](http://i.imgur.com/JNgCxRz.png?2)
-The game interface does not have many moving parts, so it did not stray too far from the initial wireframe. User stories were "organized" in a continually expanding TextEdit document.
+![alt text](http://i.imgur.com/JNgCxRz.png?2 "wireframe")
+<br />
+The game interface does not have many moving parts, so it did not stray too far from the initial wireframe. User stories were "organized" in a continually expanding TextEdit document
 
 ##Problems 
 The largest problem during this project luckily happened very early on, when I realized that JavaScript Strings are immutable. I was planning on simply replacing letters in the *hidden word* String as they were guessed, but I quickly discovered that this was not possible. Instead, every time a correct letter is guessed, the text content of the *hidden word* is reset, then rebuilt with the newly-guessed letters added in.
@@ -23,5 +24,5 @@ Other user stories that were written up but not implemented were:
   + one player mode, creating a simple AI that would randomly guess un-guessed letters  
   + vowels costing the spun amount; multiple letters multiplying the spun amount
   
-  ##What's Next
-  I was interested in creating an app that affects Strings, because I am interested in creating a translation/vocab study app in the future. It might involve hiding vocab words and replacing them with words in another language. I believe that I can use ideas and strategies from this project to help create those functionalities.  
+##What's Next
+I was interested in creating an app that affects Strings, because in the future I would like to create a translation/vocab study app. It might involve hiding vocab words and replacing them with words in another language. I believe that I can use ideas and strategies from this project to help create those functionalities.  
