@@ -308,7 +308,6 @@ for (var i = 0; i < urlArray.length; i++) {
 var themesList = document.getElementsByTagName('ul');
 var h1 = document.getElementsByTagName('h1');
 
-
 var lounge = document.createElement('li');
 lounge.innerHTML = "Default";
 themesList[0].appendChild(lounge);   
@@ -321,24 +320,6 @@ themesList[0].appendChild(sunset);
 var movy = document.createElement('li');
 movy.innerHTML = "Vanna";
 themesList[0].appendChild(movy);
-
-
-
-// var changeCSS = function () {
-//   document.body.style.backgroundColor = 'rgba(0,0,0,0)';  
-//   document.body.style.backgroundImage = 'url(media/woodsdark-sm.gif)'; //'linear-gradient(#ff5deb, #f0ff00)';
-//   h1[0].style.color = '#c9d2d7';
-//   themesList[0].style.color = '#c9d2d7';
-//   messagePlace[0].style.color = '#c9d2d7'; 
-//   pointsPlace[0].style.color = '#c9d2d7';
-//   hiddenWordPlace[0].style.color = '#c9d2d7';
-//   //$("#hiddenWordPlace[0]:first-child").style.color = '#c9d2d7';
-//   p1Place[0].style.color = '#c9d2d7';
-//   p2Place[0].style.color = '#c9d2d7';
-//   p1Place[0].style.border = '5px solid #c9d2d7';
-//   p2Place[0].style.border = '2px dotted #c9d2d7';
-//   guessesPlace[0].style.color = '#c9d2d7';
-// }
 
 var changeCSS = function (bgColor, bgImage, fontColor) {
   document.body.style.backgroundColor = bgColor;  
