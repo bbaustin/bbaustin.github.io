@@ -1,5 +1,5 @@
 #Wheel of Fortune
-![Wheel of Fortune](http://www.slate.com/content/dam/slate/articles/arts/culturebox/2014/03/140326_CBOX_WheelofFortune.jpg.CROP.promo-mediumlarge.jpg)
+![Wheel of Fortune](http://www.slate.com/content/dam/slate/articles/arts/culturebox/2014/03/140326_CBOX_WheelofFortune.jpg.CROP.promo-mediumlarge.jpg "new baby buggy")
 
 ##Introduction
 This was a five-day project created for General Assembly's Web Development Immersive. Our task was to create a browser game. I was interested in creating a game that would involve augmenting Strings, so I made something similar to Hangman or Wheel of Fortune. 
