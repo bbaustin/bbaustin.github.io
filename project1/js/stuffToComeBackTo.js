@@ -113,7 +113,7 @@ var whoWon = function(score1, score2) {
     pointButton.style.display = "none";
     pointsPlace[0].innerHTML = "";
     messagePlace[0].style.display = "none";     
-    return "The chances of a tie are extremely low! Was there really a tie, or is this an error?";
+    return "Tie, or more likely, error. Sorry...";
   }
 }
 
@@ -164,9 +164,9 @@ var tellWhoseTurn = function () {
      console.log("It's Player 1's Turn");
      player1.turn = true;
      player2.turn = false;
-     p1Place[0].style.border = "5px solid black";
+     p1Place[0].style.border = "5px solid";
      p1Place[0].style.borderRadius = "2px";     
-     p2Place[0].style.border = "1px black dotted";     
+     p2Place[0].style.border = "1px dotted";     
      return "p1";
      //underline 
    }
@@ -308,15 +308,19 @@ for (var i = 0; i < urlArray.length; i++) {
 var themesList = document.getElementsByTagName('ul');
 var h1 = document.getElementsByTagName('h1');
 
-var sunset = document.createElement('li');
-sunset.innerHTML = "Astrud";
-themesList[0].appendChild(sunset);
+
 var lounge = document.createElement('li');
-lounge.innerHTML = "Lounge";
+lounge.innerHTML = "Default";
 themesList[0].appendChild(lounge);   
 var woods = document.createElement('li');
-woods.innerHTML = "Woods";
+woods.innerHTML = "Pinetree";
 themesList[0].appendChild(woods); 
+var sunset = document.createElement('li');
+sunset.innerHTML = "Sunrise";
+themesList[0].appendChild(sunset);
+var movy = document.createElement('li');
+movy.innerHTML = "Vanna";
+themesList[0].appendChild(movy);
 
 
 
@@ -353,7 +357,7 @@ var changeCSS = function (bgColor, bgImage, fontColor) {
 }
 
  sunset.addEventListener('click', function(){
-   changeCSS('rgba(0,0,0,0)', 'linear-gradient(#bfb892, #f0ff00)', '#242424');
+   changeCSS('rgba(0,0,0,0)', 'linear-gradient(#ff5deb, #f0ff00)', '#242424');
    console.log('sunset clicked');
  })
 
@@ -364,7 +368,13 @@ lounge.addEventListener('click', function(){
 
 woods.addEventListener('click', function(){
    changeCSS('rgba(0,0,0,0)', 'url(media/woodsdark-sm.gif)', '#c9d2d7');
-   console.log('lounge clicked');
+   console.log('woods clicked');
+})
+
+var movieID = document.getElementById('bgvid');
+movy.addEventListener('click', function() {
+  changeCSS('rgba(0,0,0,0)', 'none', '#242424');
+  movieID.style.display = 'initial';
 })
 
 
