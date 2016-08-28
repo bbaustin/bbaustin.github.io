@@ -6,52 +6,52 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
 </head>
 <body>
-  <header>
 
-    <div class="nav-cat">
-      <div class="nav-sm">
-        <a href="https://github.com/bbaustin"><img src="img/github.png"></a>
-        <a href="https://www.linkedin.com/in/bbaustin"><img src="img/linkedin.png"></a>
-        <a href="https://vimeo.com/benaustin"><img src="img/vimeo.png"></a>
-        <a href="mailto:benjaminboydaustin@gmail.com"><img src="img/email.png"></a>
-      </div> 
+<header>
+
+    <h1>Ben Austin</h1>
+
+  <div class="nav-cat">
+    <div class="nav-sm">
+      <a href="https://github.com/bbaustin"><img src="img/github.png"></a>
+      <a href="https://www.linkedin.com/in/bbaustin"><img src="img/linkedin.png"></a>
+      <a href="https://vimeo.com/benaustin"><img src="img/vimeo.png"></a>
+      <a href="mailto:benjaminboydaustin@gmail.com"><img src="img/email.png"></a>
+    </div> 
+
+
+    <nav>
+      <ul>
+        <li class="main-nav">Web</li>
+        <li class="main-nav">About</li>
+      </ul>
     
-      <h1>Ben Austin</h1>
-
-
-
-      <nav>
-        <ul>
-          <li class="main-nav">Web</li>
-          <li class="main-nav">About</li>
-        </ul>
+      <ul class="sub-nav">
+        <li>thenkyou</li>
+        <li>Rep Request</li>
+        <li>badnname</li>
+      </ul> 
       
-        <ul class="sub-nav">
-          <li>thenkyou</li>
-          <li>Rep Request</li>
-          <li>badnname</li>
-        </ul> 
-        
-        <ul class="sub-nav">
-          <li>Hello!</li>
-          <li>Work</li>
-          <li>College</li>
-        </ul> 
-      
-      </nav>
-    </div>
-<!-- 
-  -->
+      <ul class="sub-nav">
+        <li>Hello!</li>
+        <li>Work</li>
+        <li>College</li>
+      </ul> 
+    
+    </nav>
+  </div>
 
-  </header>
+</header>
 
 <main>
 <div class="everything">
   <div class="container-entire-example">
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--thenkyou-->
+
     <!--1-->
     <div class="container-one-info-and-image">
-      
       <div class="container-info">
         <p>A friend of mine who teaches ESL told me that learning slang in a conversational context is something that is currently lacking in language curricula. <a href="https://github.com/bbaustin/thenkyou">thenkyou</a> is a full-stack Sinatra app designed to address this problem.</p>
 
@@ -67,14 +67,15 @@
 
   <!--2-->
     <div class="container-one-info-and-image" style="text-align:right">
-      <div class="container-image">
+      <div class ="container-info" style="order:2">
+        <p>Users are provided with readings of different skill levels. Highlighted focus terms will give definitions and usage examples when interacted with. These readings and vocab terms are linked through a relational database.</p>
+      </div>      
+
+      <div class="container-image" style="order:1" >
         <img src="img/thenkyou4.gif">
       </div>
 
-      <div class ="container-info" >
-        <p>Users are provided with readings of different skill levels. Highlighted focus terms will give definitions and usage examples when interacted with. These readings and vocab terms are linked through a relational database.</p>
 
-      </div>
     </div>
 
     <p class="break">//</p>
@@ -97,15 +98,16 @@
   <!--4-->
     <div class="container-one-info-and-image" style="text-align:right">
       
-      <div class="container-image">
+      <div class="container-info" style="order:2">
+        <p><strong>thenkyou</strong> currently includes readings in English, German, and Japanese, but it would be cool to add more content in different languages soon.</p>
+        <p>Check out the code <a href="https://github.com/bbaustin/thenkyou">here</a>!</p>
+      </div>
+
+      <div class="container-image" style="order:1">
         <img src="img/thenkyou5.gif">
       </div>
 
-      <div class="container-info">
-        <p><strong>thenkyou</strong> currently includes readings in English, German, and Japanese, but it would be cool to add more content in different languages soon.</p>
-        <p>Check out the code <a href="https://github.com/bbaustin/thenkyou">here</a>!</p>
 
-      </div>
 
     </div>  
   </div>
@@ -114,16 +116,17 @@
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--reprequest-->
 
-  <div class="container-entire-example"> <!--like 400%?-->
-    
+  <div class="container-entire-example"> 
+    <div class="container-one-info-and-image" style="text-align:right">    
     <!--1-->
-    <div class="container-one-info-and-image">
-      <div class="container-image">
+    <div class="container-info" style="order:2">
+      <p><a href="https://github.com/bbaustin/BenLeahProject">Rep Request</a> is a pair-programmed Sinatra app that provides information about Congress members. It uses the govtrack.us API and an open-source database to gather information.</p>
+    </div>
+    
+      <div class="container-image" style="order:1">
         <img src="img/repreq1.gif" />
       </div>
-      <div class="container-info" style="text-align:right">
-        <p><a href="https://github.com/bbaustin/BenLeahProject">Rep Request</a> is a pair-programmed Sinatra app that provides information about Congress members. It uses the govtrack.us API and an open-source database to gather information.</p>
-      </div>
+
 
     </div>
 
@@ -146,14 +149,15 @@
 
   
     <!--3-->
-    <div class="container-one-info-and-image">
-      <div class="container-image">
-        <img src="img/repreq4.gif" />
-      </div>
-      <div class="container-info"  style="text-align:right">
-      <p>Various information is displayed upon clicking a politician. LESS and Flexbox were used to help organize and style the information.</p>
-      <p>Check out the code <a href="https://github.com/bbaustin/BenLeahProject">here</a>!</p>
+    <div class="container-one-info-and-image" style="text-align:right">
 
+      <div class="container-info" style="order:2">
+        <p>Various information is displayed upon clicking a politician. LESS and Flexbox were used to help organize and style the information.</p>
+        <p>Check out the code <a href="https://github.com/bbaustin/BenLeahProject">here</a>!</p>
+      </div>
+
+      <div class="container-image" style="order:1">
+        <img src="img/repreq4.gif" />
       </div>
 
     </div>  
@@ -163,10 +167,7 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--badnname-->
-
-
-  <div class="container-entire-example"> <!--like 400%?-->
-  <!--badnname-->
+  <div class="container-entire-example"> 
     <!--1-->
     <div class="container-one-info-and-image">
       <div class="container-info">
@@ -181,14 +182,16 @@
     <p class="break">\\</p>
 
   <!--2-->
-    <div class="container-one-info-and-image">
-      <div class="container-image">
-        <img src="img/badnname2.gif" />
-      </div>
-      
-      <div class="container-info" style="text-align:right">
+    <div class="container-one-info-and-image" style="text-align:right">
+
+      <div class="container-info" style="order:2">
         <p>It grabs information via the Discogs API and a Bandcamp scraper. If the bandname is taken, information and links to the existing band are displayed to the user.</p>
       </div>
+
+      <div class="container-image" style="order:1">
+        <img src="img/badnname2.gif" />
+      </div>
+
 
     </div> 
 
@@ -220,7 +223,7 @@
         <p>BenjaminBoydAustin@gmail.com</p>
       </div>
       <div class="container-image">
-        <img alt="pic of cute boy" title="hi!" src="img/ben3.png">
+        <img title="hi!" src="img/ben3.png">
       </div>
     </div>
   </div>
@@ -232,7 +235,7 @@
         <p><em>Drawing by the talented Caitlin Mitchell.</em></p>
       </div>
       <div class="container-image">
-        <img alt="pic of cute boy" title="hello!" src="img/ben2.png">
+        <img title="hello!" src="img/ben2.png">
       </div>
     </div>
   </div>
@@ -244,7 +247,7 @@
         <p>In college, I went the hyper-Liberal Arts route, majoring in Modern Languages and minoring in Animation. I have always been interested in linguistics and language acquisition (and almost taught English abroad before opting to get into web development instead). Studying <a href="https://vimeo.com/29587897">animation</a> in college helped me hone my skills in the Adobe Creative Suite, Final Cut Pro, and caffeine consumption.</p>
       </div>
       <div class="container-image">
-        <img alt="pic of cute boy" title="hey!" src="img/ben1.png">
+        <img title="hey!" src="img/ben1.png">
       </div>
     </div>
   </div>
