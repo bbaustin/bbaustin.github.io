@@ -7,9 +7,9 @@ html, body {
 header {
   display: flex;
   flex-direction: column;
-  align-content: flex-start;
+  align-content: space-around;
   background-color: #40d2aa;
-  height: 140px;
+  height: 135px;
   top: 0;
   position: fixed;
   width: 100%;
@@ -20,6 +20,7 @@ h1 {
   font-weight: 400;
   margin: 0;
   font-size: 48px;
+  margin-top: -60px;
 }
 
 a {
@@ -55,6 +56,10 @@ li:last-child:after {
   content: "";
 }
 
+nav {
+  margin-top: -5px;
+}
+
 
 p {
   font-size: 2vw;
@@ -83,7 +88,7 @@ small {
 .everything {
   display: flex;
   flex-direction: column;
-  margin-top: 140px;
+  margin-top: 135px;
   background: #eaeaea;
 }
 
@@ -134,12 +139,12 @@ img {
 .nav-sm {
   align-self: flex-end;
   flex-direction: column;
-  margin-right: 50px
+  margin-right: 50px;
+  margin-top: 15px;
 }
 
 .nav-sm img {
   max-height: 40px;
-  top: -15px;
 
 }
 

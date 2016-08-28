@@ -19,7 +19,7 @@ console.log(sub[0]);
 
 $(nav[0]).click(function() {
   everything[0].style.display = "initial";
-  everything[0].setAttribute("style", "margin-top:" + 140 + "px");
+  everything[0].setAttribute("style", "margin-top:" + 135 + "px");
   everything[1].style.display = "none";
   sub[0].style.display = "initial";
   sub[1].style.display = "none";
@@ -36,7 +36,7 @@ $(nav[0]).click(function() {
 
 $(nav[1]).click(function() {
   everything[0].style.display = "none";
-  everything[1].setAttribute("style", "margin-top:" + 140 + "px");
+  everything[1].setAttribute("style", "margin-top:" + 135 + "px");
   everything[1].style.display = "flex";
   sub[0].style.display = "none";
   sub[1].style.display = "initial";
