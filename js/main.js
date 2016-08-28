@@ -23,6 +23,9 @@ $(nav[0]).click(function() {
   everything[1].style.display = "none";
   sub[0].style.display = "initial";
   sub[1].style.display = "none";
+  for (var i = 0; i <= 5; i++) {
+    $('.sub-nav li')[i].style.fontWeight = 300;
+  }
   $('.sub-nav li')[0].style.fontWeight = "700";
   nav[0].style.fontWeight = "700";
   nav[1].style.fontWeight = "400";
@@ -40,8 +43,10 @@ $(nav[1]).click(function() {
   everything[1].style.display = "flex";
   sub[0].style.display = "none";
   sub[1].style.display = "initial";
+  for (var i = 0; i <= 5; i++) {
+    $('.sub-nav li')[i].style.fontWeight = 300;
+  }
   $('.sub-nav li')[3].style.fontWeight = "700";
-  $('.sub-nav li')[4].style.fontWeight = "300";
   nav[0].style.fontWeight = "400";
   nav[1].style.fontWeight = "700";
   for (var i = 0; i < holders.length; i++) {
