@@ -16,7 +16,7 @@ header {
   padding-left: 30px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   header {
     padding-left: 0px;
   }
@@ -28,7 +28,7 @@ h1 {
   font-size: 48px;
 }
 
-@media (max-width: 600px) { 
+@media (max-width: 768px) { 
   h1 {
     font-weight: 700;
     margin: 0;
@@ -70,7 +70,7 @@ li:last-child:after {
   content: "";
 }
 
-@media (max-width: 600px) { 
+@media (max-width: 768px) { 
   nav {
     text-align: center;
   }
@@ -83,7 +83,7 @@ p {
   margin-bottom: 5px;
 }
 
-@media (max-width: 600px) { 
+@media (max-width: 768px) { 
   p {
     font-size: 16px;
     line-height: 1.75em;
@@ -105,7 +105,7 @@ small {
   padding-left: 15px;
 }
 
-@media (max-width: 600px) { 
+@media (max-width: 768px) { 
   .main-nav {
     font-size: 20px;
     padding: 0;
@@ -133,7 +133,7 @@ small {
   margin: 10px 0px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .container-one-info-and-image {
     display: block;
     width: 100%;
@@ -146,7 +146,7 @@ small {
   max-width: 55%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .container-image {
     justify-content: flex-start;
     max-width: 100%;
@@ -171,7 +171,7 @@ img {
   -webkit-box-sizing:border-box; /* Safari */  
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .container-info {
     width: 100%;
     padding: 0px 35px;
@@ -186,7 +186,7 @@ img {
   margin-left: 15px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .sub-nav {
     margin: 0px;
     font-size: 14px;
@@ -209,7 +209,7 @@ img {
   margin-top: -45px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .nav-sm {
     align-self: center;
     flex-direction: column;
@@ -224,7 +224,7 @@ img {
   max-height: 40px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .nav-sm img {
     max-height: 25px;
     margin-right: 10px;
