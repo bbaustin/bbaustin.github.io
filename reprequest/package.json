@@ -1,0 +1,29 @@
+{
+  "name": "repres",
+  "version": "0.0.1",
+  "description": "project 3",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeahNelson/BenLeahProject.git"
+  },
+  "author": "ben and leah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LeahNelson/BenLeahProject/issues"
+  },
+  "homepage": "https://github.com/LeahNelson/BenLeahProject#readme",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "keywords": [
+    "project",
+    "3"
+  ],
+  "devDependencies": {
+    "gulp-less": "^3.1.0"
+  }
+}

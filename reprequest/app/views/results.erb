@@ -1,0 +1,52 @@
+
+<div class="containerRow">
+  <div class="containerCol">
+    
+    <div class="bio">
+      
+      <p>
+        <h2><%= @leg["first_name"] %> <%= @leg["last_name"] %></h2>
+      </p>
+
+      <div class="photo">
+        <img src="https://www.govtrack.us/data/photos/<%= @leg["govtrack_id"] %>-200px.jpeg">
+      </div>
+      
+      <div class="job">
+        <p><%= pos %></p>
+        <p><%= @leg["party"] %>, <%= @leg["state"] %></p>
+      </div>
+
+      <div class="links">
+        <a href="http://facebook.com/<%= @leg["facebook"] %>"><img src="/img/fb2.png" /></a>
+        <a href="http://twitter.com/<%= @leg["twitter"] %>"><img src="/img/tw2.png" /></a>
+        <a href="<%= @leg["url"] %>"><img src="/img/ww2.png" /></a>
+      
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="containerCol">
+    <div class="info">
+
+      <h3>Bills Sponsored</h3>
+        <ul class="bill"></ul>
+    
+      <h3>Committees</h3>        
+        <ul class="committee"></ul>
+    
+      <h3>Voting History</h3>
+        <div class="containerRow">
+          <div class="containerCol">
+            <div class="votingHistory"></div>
+          </div>
+          <div class="containerVotes">
+            <p class="mVotes">Missed Votes: <%= @vote["missed"]%></p>
+            <p class="eVotes">Eligible Votes: <span style="color: #3296ff"><%= @vote["eligible"]%></span></p> 
+          </div>
+
+        </div>
+
+  </div>
+</div>
