@@ -2,15 +2,21 @@
 <html>
   <head>
     <title>Volume Meter Sample</title>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!-- Include the volume meter component -->
     <script src="volume-meter.js"></script>
     <!-- Include the main app logic -->
-    <script src="main.js"></script>
+    <script src="audio.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <p>This sample shows how to implement a clip-indicating volume meter in Web Audio, using a ScriptProcessor.  It's necessary to use a ScriptProcessor in order to not miss any clipping samples - otherwise you could implement this using a RealtimeAnalyser to only grab samples when necessary.</p>
     <canvas id="meter" width="500" height="50"></canvas>
+
+    <div class="shape"></div>
+    <div class="clipped-element"></div>
+
+
 
     <p>Check out the <a href="http://github.com/cwilso/volume-meter/">source on Github</a>.</p>
     <p>The usage is quite easy:
