@@ -93,13 +93,22 @@ function drawLoop( time ) {
 
     // draw a bar based on the current volume
     canvasContext.fillRect(0, 0, meter.volume*WIDTH*1.4, HEIGHT);
-    // $(console.log(meter.volume);
+    // console.log(meter.volume);
+    makeHex();
+
+    $('body').css('background', "#" + makeHex());
 
     // set up the next visual callback
     rafID = window.requestAnimationFrame( drawLoop );
 }
 
-
+function makeHex() {
+    var colorNum = (meter.volume * 1000000000).toString(16);
+    console.log(colorNum);
+    colorNum = colorNum.slice(0, 6);
+    console.log(colorNum);
+    return colorNum;
+}
 
 /*
 The MIT License (MIT)
