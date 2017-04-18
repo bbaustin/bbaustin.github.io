@@ -96,7 +96,7 @@ function drawLoop( time ) {
     // console.log(meter.volume);
     makeHex();
 
-    $('body').css('background', "#" + makeHex());
+    $('.clipped-element').css('background', "#" + makeHex());
 
     // set up the next visual callback
     rafID = window.requestAnimationFrame( drawLoop );
