@@ -95,6 +95,7 @@ function drawLoop( time ) {
     canvasContext.fillRect(0, 0, meter.volume*WIDTH*1.4, HEIGHT);
     // console.log(meter.volume);
     makeHex();
+    chooseHex();
 
     $('.clipped-element').css('background', "#" + makeHex());
 
@@ -108,7 +109,20 @@ function makeHex() {
     colorNum = colorNum.slice(0, 6);
     console.log(colorNum);
     return colorNum;
+// if statement? set like 10 colors and have them melt in between each other. 
 }
+
+function chooseHex() {
+  console.log(meter.volume);
+  // #fdff2d    #39d634    #34bad6    #9475e1    #f161f2
+  if (meter.volume < .001) {
+    $('body').css('background', '#f161f2');
+  }
+  else $('body').css('background', '#34bad6');
+}
+
+
+
 
 /*
 The MIT License (MIT)
