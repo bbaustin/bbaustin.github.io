@@ -115,6 +115,7 @@ function makeHex() {
 function chooseHex() {
   console.log(meter.volume);
   // #fdff2d    #39d634    #34bad6    #9475e1    #f161f2
+
   if (meter.volume < .001) {
     $('body').css('background', '#f161f2');
   }

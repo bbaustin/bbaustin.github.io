@@ -1,3 +1,9 @@
+
+body {
+  transition: background 0.5s ease;
+
+}
+
 div.shape {
   -webkit-clip-path: polygon(51% 24%, 21% 92%, 84% 76%);
   clip-path: polygon(51% 24%, 21% 92%, 84% 76%);
@@ -9,6 +15,8 @@ div.clipped-element {
   width: 100px;
   height: 100px;
   background: black;
+  transition: background 0.9s linear;
+
 
   /* Refers to the inline SVG clipPath element above */
   // clip-path: url(#inline-svg-clipPath);
