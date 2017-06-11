@@ -42,7 +42,7 @@ ul {
     padding: 2% 6% 2%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   h1 {
     font-size: 69px;
   }
