@@ -1,0 +1,118 @@
+/* line 3, ../scss/style.scss */
+body {
+  margin: 0;
+  padding: 0;
+  background: url("../images/detail-7.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'EB Garamond', serif;
+}
+
+/* line 15, ../scss/style.scss */
+main {
+  min-height: 90vh;
+  min-height: calc(100vh - 61px);
+  width: 100%;
+}
+
+/* line 21, ../scss/style.scss */
+header {
+  background: whitesmoke;
+  height: 30px;
+}
+
+/* line 26, ../scss/style.scss */
+h1 {
+  margin: 0;
+  font-size: 20px;
+  padding: 2px 5px;
+}
+
+/* line 32, ../scss/style.scss */
+footer {
+  background: whitesmoke;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 5px 0px;
+}
+
+/* line 40, ../scss/style.scss */
+a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+/* line 46, ../scss/style.scss */
+ul {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 53, ../scss/style.scss */
+li {
+  list-style: none;
+  display: inline;
+  padding-right: 3px;
+}
+
+/* line 59, ../scss/style.scss */
+section {
+  width: 20%;
+  height: 20%;
+  float: left;
+  margin: 0;
+  padding: 0;
+  background: pink;
+}
+
+/* line 87, ../scss/style.scss */
+.browse {
+  justify-content: space-between;
+}
+
+/* line 91, ../scss/style.scss */
+.browse li {
+  padding: 0px 10px;
+}
+
+/* line 95, ../scss/style.scss */
+.more {
+  border-bottom: 1px black solid;
+  position: absolute;
+  bottom: 31px;
+  background: whitesmoke;
+  opacity: .75;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 3px;
+}
+
+/* line 107, ../scss/style.scss */
+.info {
+  justify-content: center;
+  font-size: 12px;
+  border-bottom: 1px white solid;
+}
+
+/* line 113, ../scss/style.scss */
+.info li {
+  text-align: center;
+  padding-right: 10%;
+}
+
+/* line 118, ../scss/style.scss */
+.info li:last-child {
+  padding-right: 0%;
+}
+
+/* line 122, ../scss/style.scss */
+#prev, #next {
+  font-weight: 700;
+}
