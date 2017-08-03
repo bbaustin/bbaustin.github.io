@@ -1,5 +1,5 @@
 body {
-  background-image: url("tres.jpg");
+  background-image: url("img/tres.jpg");
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -37,7 +37,7 @@ main p {
 
 ul {
     margin: -1% 5% 0%;
-    background: url(blur.png) no-repeat;
+    background: url(img/blur.png) no-repeat;
     font-size: 57px;
     padding: 2% 6% 2%;
 }
