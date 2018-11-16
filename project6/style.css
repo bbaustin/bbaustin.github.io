@@ -35,6 +35,16 @@ main p {
   align-items: bottom;
 }
 
+.fullbar {
+  width: 100%;
+  min-height: 150px;
+}
+
+.hot {
+  background-color: #ff87c9;
+}
+
+
 ul {
     margin: -1% 5% 0%;
     background: url(img/blur.png) no-repeat;
