@@ -189,7 +189,7 @@ a:hover {
   clear: both;
 }
     
-@media (max-width: 945px){
+@media (max-width: 945px) {
   
   .web {
     width: 115vw;
