@@ -5,14 +5,15 @@ html, body {
 
 }
 
-body {
+.allContainer {
     background-size: cover;
     background: url("http://i.imgur.com/d7Q4JYf.jpg");
     background-position: right top;
     background-attachment: fixed;
     width: 100%;
     overflow-x: hidden;
-    }
+    background-repeat: no-repeat;
+}
 
 main {
   height: 90vh;
@@ -193,7 +194,7 @@ a:hover {
   
   .web {
     width: 115vw;
-    min-height: 105vh;
+    min-height: 90vh; /*collapsing... change to flex later probably*/
   }
 
   .music {
@@ -221,10 +222,12 @@ a:hover {
 
   .music .imgContainer {
     width: 34%;
+    padding-top: 16px;
   }
 
   .music .textContainer {
     padding-left: 22%;
+    padding-bottom: 16px;
   }
 
   .web .imgContainer, .web .textContainer {
@@ -240,6 +243,7 @@ a:hover {
   .seethruBox {
     display: block;
     margin: 0 auto;
+    padding: 0 auto;
   }
 
   .seethruBox p {
@@ -288,6 +292,10 @@ a:hover {
   .music h2 {
     line-height: 1.2;
     font-size: 26px;
+  }
+
+  section {
+    height: initial;
   }
 
   p {
