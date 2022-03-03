@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.ebe24603.css",
-    "main.js": "/static/js/main.3743d76a.js",
-    "index.html": "/index.html",
-    "main.ebe24603.css.map": "/static/css/main.ebe24603.css.map",
-    "main.3743d76a.js.map": "/static/js/main.3743d76a.js.map"
+    "main.css": "/ikatakana/static/css/main.ebe24603.css",
+    "main.js": "/ikatakana/static/js/main.3743d76a.js",
+    "index.html": "/ikatakana/index.html",
+    "main.ebe24603.css.map": "/ikatakana/static/css/main.ebe24603.css.map",
+    "main.3743d76a.js.map": "/ikatakana/static/js/main.3743d76a.js.map"
   },
   "entrypoints": [
     "static/css/main.ebe24603.css",
